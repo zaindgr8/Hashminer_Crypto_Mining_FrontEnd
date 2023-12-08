@@ -64,8 +64,8 @@ const ClerkWithRoutes = () => {
           <Route path="/manage_investor" element={<Manage_Investor />} />
           <Route path="/passwordSetting_Admin" element={<ChangePass_Admin />} />
           <Route path="/wallet_Admin" element={<Wallet_Admin />} />
-          {/* <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} /> */}
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
 
           {/* <Route path="/" element={<App />} /> */}
           <Route
@@ -78,7 +78,6 @@ const ClerkWithRoutes = () => {
               />
             }
           />
-          
           <Route
             path="/sign-up/*"
             element={
@@ -90,12 +89,12 @@ const ClerkWithRoutes = () => {
             }
           />
           <Route
-            path="/user"
+            path="/protected"
             element={
               <>
                 <SignedIn>
-                  {/* <ProtectedPage /> */}
-                  <User />
+                  <ProtectedPage />
+                  <Login />
                 </SignedIn>
                 <SignedOut>
                   <RedirectToSignIn />

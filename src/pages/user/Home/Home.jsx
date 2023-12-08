@@ -13,18 +13,16 @@ import Card4 from "../Cards/package_card"
 import './Home.scss';
 
 function Home() {
-    //
+
     return (
       <div className="home">
         <div className="home_sidebar">
           <Sidebar />
         </div>
-
         <div className="home_main">
           <Navbar />
 
           <div className="bg_color" />
-
           <div className="home_items">
             <Card
               title="Available Balance"
@@ -53,7 +51,6 @@ function Home() {
             {/* <ItemLists type="products" />
             <ItemLists type="balance" /> */}
           </div>
-
           {/* <div className="chart_sec">
                     <ProgressBar />
                     <Chart height={450} title="Revenue" />

@@ -28,7 +28,27 @@ function App() {
   const [cookies, setCookie] = useCookies(["token"]);
 
   return (
- <></>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/user" element={<User />} />
+        <Route path="/succubus" element={<Admin />} />
+        <Route path="/pu" element={<ProfileUser />} />
+        <Route path="/referral" element={<ReferralForm />} />
+        <Route path="/form" element={<Form />} />
+        <Route path="/withdraw" element={<Withdraw />} />
+        <Route path="/password" element={<Setting />} />
+        <Route path="/wallet" element={<Wallet />} />
+        <Route path="/ticket" element={<Ticket />} />
+        <Route path="/admin_referral" element={<ReferralCodeAdmin />} />
+        <Route path="/withdraw_admin" element={<Withdraw_Admin />} />
+        <Route path="/manage_investor" element={<Manage_Investor />} />
+        <Route path="/passwordSetting_Admin" element={<ChangePass_Admin />} />
+        <Route path="/wallet_Admin" element={<Wallet_Admin />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

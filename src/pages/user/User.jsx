@@ -19,6 +19,8 @@ import Wallet from "./Setting/Wallet_Setting";
 import ReferralForm from "./Referal/Referral";
 import Ticket from "./Ticket/Ticket";
 import { useCookies } from "react-cookie";
+import { useAuth } from "@clerk/clerk-react";
+
 
 // Dynamicaly change the data for different pages(replaceable)
 const userInpDetails = [

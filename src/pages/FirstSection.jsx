@@ -34,7 +34,7 @@ useEffect(() => {
           mining in a few clicks. Our mission: Accessibility to cloud mining for
           all.
         </p>
-        <a href="#" className="main-header-content-principal__btn">
+        <a href="#products" className="main-header-content-principal__btn">
           Start Mining<i className="fas fa-angle-right"></i>
         </a>
       </div>

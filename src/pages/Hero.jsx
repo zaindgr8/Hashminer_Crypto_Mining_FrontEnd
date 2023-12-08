@@ -84,7 +84,7 @@ useEffect(() => {
               Daily payouts for hassle-free access to your earnings
             </span>
           </p>
-          <a href="#" className="why-us-section__content__btn">
+          <a href="#features" className="why-us-section__content__btn">
             Learn More
           </a>
         </div>

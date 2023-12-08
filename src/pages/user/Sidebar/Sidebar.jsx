@@ -68,11 +68,11 @@ function Sidebar() {
                     </li> */}
 
             <p className="spann">Settings</p>
-            <Link to="/pu">
+            {/* <Link to="/pu">
               <li>
                 <AccountCircleIcon className="icon" /> Profile
               </li>
-            </Link>
+            </Link> */}
             <Link to="/password">
               <li>
                 <SettingsRoundedIcon className="icon" /> Change Password

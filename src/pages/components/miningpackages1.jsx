@@ -1,8 +1,15 @@
-import React from 'react'
+import React from "react";
 import mining3 from "../../assets/mining6.png";
 import { CheckCircle2 } from "lucide-react";
 
-const Miningpackages = ({title, investment, returns, src, imgSize, package1}) => {
+const Miningpackages = ({
+  title,
+  investment,
+  returns,
+  src,
+  imgSize,
+  package1,
+}) => {
   return (
     <div className="info-card">
       <img src={src} width={imgSize} alt="" className="info-card__icon" />
@@ -55,6 +62,6 @@ const Miningpackages = ({title, investment, returns, src, imgSize, package1}) =>
       </div>
     </div>
   );
-}
+};
 
-export default Miningpackages
+export default Miningpackages;

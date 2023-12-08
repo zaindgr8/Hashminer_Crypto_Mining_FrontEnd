@@ -1,24 +1,19 @@
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import BarChartIcon from "@mui/icons-material/BarChart";
-import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import CloseIcon from "@mui/icons-material/Close";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import FullscreenExitIcon from "@mui/icons-material/FullscreenExit";
-import LanguageIcon from "@mui/icons-material/Language";
-import LightModeIcon from "@mui/icons-material/LightMode";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import PersonIcon from "@mui/icons-material/Person";
 import SearchIcon from "@mui/icons-material/Search";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
-import TableChartIcon from "@mui/icons-material/TableChart";
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 // import { ColorContext } from '../../ColorContext/darkContext';
-import { MdEmail } from "react-icons/md";
+import { UserButton } from "@clerk/clerk-react";
+import { CiEdit } from "react-icons/ci";
+import { useUser } from "@clerk/clerk-react";
 
 // import sass file
 import "./navbar.scss";
@@ -27,11 +22,17 @@ import "./navbar.scss";
 import admin from "../Images/admin_pic.jpg";
 
 function Navbar() {
+  const { isSignedIn, user, isLoaded } = useUser();
+
   const [toggle, setToggle] = useState(false);
   // color state management using react context
   // const { darkMode, dispatch } = useContext(ColorContext);
 
   const handleToggle = () => {
+    if (!user) {
+      // User is not logged in, redirect or display login message
+      
+    }
     setToggle(!toggle);
   };
 
@@ -82,12 +83,11 @@ function Navbar() {
                         <span className="badge">2</span>
                     </div> */}
           <div className="item gap-x-1 items-center">
-            <MdEmail />
-            support@hashminer.com
+            <span className=" font-bold text-xl text-blue-500">{user.fullName}</span>
           </div>
 
           <div className="item">
-            <img className="admin_pic" src={admin} alt="admin" />
+            <UserButton />
           </div>
         </div>
       </div>

@@ -14,7 +14,7 @@ function FlowHeader() {
   }, []);
   const loginHandle = () => {
     // Login Functionality
-    navigate("/login");
+    navigate("/user");
   };
   return (
     <nav className="flex flex-col lg:flex-row items-center justify-between headline mb-16 lg:mb-0">
@@ -65,7 +65,7 @@ function FlowHeader() {
           Login
         </button>
         <Link
-          to="/register"
+          to="/user"
           className="main-header-navbar__login__register-btn"
         >
           Register
