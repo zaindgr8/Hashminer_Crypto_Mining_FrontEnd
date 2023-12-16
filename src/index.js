@@ -19,9 +19,7 @@ import Withdraw_Admin from "./pages/admin/Form_Withdraw/form_withdraw";
 import Manage_Investor from "./pages/admin/DataTable/DataTable";
 import ChangePass_Admin from "./pages/admin/Setting/Pass_Setting";
 import Wallet_Admin from "./pages/admin/Setting/Wallet_Setting";
-import Login from "./pages/login/Login";
 // import Cookies from "js-cookie";
-import Register from "./pages/register/Register";
 import Admin from "./pages/admin/Admin";
 import Landing from "./pages/Landing";
 import User from "./pages/user/User";
@@ -32,6 +30,8 @@ import Withdraw from "./pages/user/Form_Withdraw/form_withdraw";
 import Setting from "./pages/user/Setting/Pass_Setting";
 import Wallet from "./pages/user/Setting/Wallet_Setting";
 import Ticket from "./pages/user/Ticket/Ticket";
+import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
 
 if (!process.env.REACT_APP_CLERK_PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key");
@@ -64,8 +64,9 @@ const ClerkWithRoutes = () => {
           <Route path="/manage_investor" element={<Manage_Investor />} />
           <Route path="/passwordSetting_Admin" element={<ChangePass_Admin />} />
           <Route path="/wallet_Admin" element={<Wallet_Admin />} />
-          {/* <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} /> */}
+          <Route path="/user" element={<User />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
 
           {/* <Route path="/" element={<App />} /> */}
           <Route
@@ -78,7 +79,7 @@ const ClerkWithRoutes = () => {
               />
             }
           />
-          
+
           <Route
             path="/sign-up/*"
             element={
@@ -95,7 +96,7 @@ const ClerkWithRoutes = () => {
               <>
                 <SignedIn>
                   {/* <ProtectedPage /> */}
-                  <User />
+                  {/* <User /> */}
                 </SignedIn>
                 <SignedOut>
                   <RedirectToSignIn />

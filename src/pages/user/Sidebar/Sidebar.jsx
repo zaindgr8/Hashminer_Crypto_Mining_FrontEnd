@@ -73,11 +73,11 @@ function Sidebar() {
                 <AccountCircleIcon className="icon" /> Profile
               </li>
             </Link> */}
-            <Link to="/password">
+            {/* <Link to="/password">
               <li>
                 <SettingsRoundedIcon className="icon" /> Change Password
               </li>
-            </Link>
+            </Link> */}
             <Link to="/wallet">
               <li>
                 <FaWallet className="icon" /> Wallet Address

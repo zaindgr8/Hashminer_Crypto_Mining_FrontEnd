@@ -83,7 +83,7 @@ function Navbar() {
                         <span className="badge">2</span>
                     </div> */}
           <div className="item gap-x-1 items-center">
-            <span className=" font-bold text-xl text-blue-500">{user.fullName}</span>
+            <span className=" font-bold text-xl text-blue-500"></span>
           </div>
 
           <div className="item">
