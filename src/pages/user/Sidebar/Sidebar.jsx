@@ -79,7 +79,7 @@ function Sidebar() {
             </Link> */}
             <Link to="/">
               <li>
-                <LogoutIcon className="icon" /> Log Out
+                <LogoutIcon className="icon" /> Go to Home Page
               </li>
             </Link>
           </ul>

@@ -56,31 +56,6 @@ function Navbar() {
         </div>
 
         <div className="item_lists">
-          {/* <div className="item item_lan">
-                        <LanguageIcon className="item_icon" />
-                        <p>Welcome</p>
-                    </div> */}
-          {/* <div className="item">
-                        {!darkMode ? (
-                            <DarkModeIcon
-                                className="item_icon"
-                                onClick={() => dispatch({ type: 'TOGGLE' })}
-                            />
-                        ) : (
-                            <LightModeIcon
-                                className="item_icon white"
-                                onClick={() => dispatch({ type: 'TOGGLE' })}
-                            />
-                        )}
-                    </div> */}
-          {/* <div className="item">
-                        <FullscreenExitIcon className="item_icon" />
-                    </div> */}
-
-          {/* <div className="item">
-                        <ChatBubbleOutlineIcon className="item_icon" />
-                        <span className="badge">2</span>
-                    </div> */}
           <div className="item gap-x-1 items-center">
             <span className=" font-bold text-xl text-blue-500"></span>
           </div>
