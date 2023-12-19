@@ -1,7 +1,75 @@
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { GiMoneyStack } from "react-icons/gi";
+import { useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
+import axios from "axios";
 
 const Card = ({ title, description, button, href }) => {
+  const [user, setUser] = useState(null)
+    const [userPackages, setUserPackages] = useState([])
+    const [amount, setAmount] = useState(null)
+
+  useEffect(() => {
+    // Function to get the token from local storage
+    const getAuthToken = () => {
+      return localStorage.getItem("apiToken");
+    };
+
+    // Function to decode the token
+    const decodeToken = (token) => {
+      try {
+        return jwtDecode(token);
+      } catch (error) {
+        console.error("Error decoding token:", error.message);
+        return null;
+      }
+    };
+
+    // Get the token from local storage
+    const token = getAuthToken();
+
+    if (token) {
+      // Decode the token
+      const decoded = decodeToken(token);
+
+      // Make an API call with the token in the headers
+      axios
+        .get("http://localhost:3000/packages/user_packages", {
+          headers: {
+            Authorization: token,
+            "Content-Type": "application/json", // Adjust content type as needed
+          },
+        })
+        .then((response) => {
+          if(
+            response.data
+          )
+          {
+
+         const totalPriceAmount = response.data.reduce((sum, drive) => {
+           if (drive.price && drive.price !== undefined) {
+             const price = parseInt(drive.price, 10); // Parse as decimal
+             console.log("Adding price:", price);
+             return sum + price;
+           }
+           console.log("Skipping undefined price:", drive.price);
+           return sum;
+         }, 0);
+
+              setAmount(totalPriceAmount);
+               console.log("Total Price", totalPriceAmount);
+          }
+          // Handle the response from the server
+          console.log("API Response:", response.data);
+          setUserPackages((prev) => [...prev, ...response.data]);
+        })
+        .catch((error) => {
+          // Handle errors
+          console.error("Error making API call:", error.message);
+        });
+    }
+  }, []);
+
   return (
     <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow light:bg-gray-800 light:border-gray-700">
       <a href={href}>
@@ -11,7 +79,15 @@ const Card = ({ title, description, button, href }) => {
       </a>
       <p className="mb-3 flex items-center gap-x-2 font-normal text-gray-700 light:text-gray-400">
         <GiMoneyStack />
-        {description}
+        Total Investment<span className="text-green-700">{amount}</span>
+        <MdOutlineAttachMoney />
+      </p>
+      <p className="mb-3 flex items-center gap-x-2 font-normal text-gray-700 light:text-gray-400">
+        <GiMoneyStack />
+        Daily Bonus:
+        <span className="text-green-700">
+          {amount !== null ? amount * 0.04 : 0}
+        </span>
         <MdOutlineAttachMoney />
       </p>
       <div className="flex gap-y-2">
@@ -36,6 +112,7 @@ const Card = ({ title, description, button, href }) => {
           </svg>
         </a>
       </div>
+      {console.log("User Info Bro", user)}
     </div>
   );
 };

@@ -1,17 +1,11 @@
 
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import BarChartIcon from '@mui/icons-material/BarChart';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import LogoutIcon from '@mui/icons-material/Logout';
-import PersonIcon from '@mui/icons-material/Person';
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
-import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
-import TableChartIcon from '@mui/icons-material/TableChart';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 // import { ColorContext } from '../../ColorContext/darkContext';
-import { GiMoneyStack } from "react-icons/gi";
 import { FaWallet } from "react-icons/fa6";
 import { BsPeopleFill } from "react-icons/bs";
 import { FaTicket } from "react-icons/fa6";
@@ -78,11 +72,11 @@ function Sidebar() {
                 <SettingsRoundedIcon className="icon" /> Change Password
               </li>
             </Link> */}
-            <Link to="/wallet">
+            {/* <Link to="/wallet">
               <li>
                 <FaWallet className="icon" /> Wallet Address
               </li>
-            </Link>
+            </Link> */}
             <Link to="/">
               <li>
                 <LogoutIcon className="icon" /> Log Out

@@ -91,7 +91,7 @@ const ClerkWithRoutes = () => {
             }
           />
           <Route
-            path="/user"
+            path="/"
             element={
               <>
                 <SignedIn>

@@ -10,48 +10,63 @@ function Login() {
   const [isFocused, setIsFocused] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [apiResponse, setApiResponse] = useState(null); // New state to hold API response
   const navigate = useNavigate();
 
   const handleFocus = () => {
     setIsFocused(true);
-  }
+  };
 
   const handleBlur = (e) => {
     if (!e.target.value) {
       setIsFocused(false);
     }
-  }
+  };
+
+  // const handleSubmit = async () => {
+  //   try {
+  //     const response = await axios.post("http://localhost:3000/auth/login", {
+  //       email,
+  //       password,
+  //     });
+
+  //     // Set the API response to the state
+  //     setApiResponse(response.data);
+  //   } catch (error) {
+  //     console.error("Error logging in:", error.message);
+  //     // Handle login error, if needed
+  //   }
+  // };
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/auth/login", {
+      const response = await axios.post("http://localhost:3000/auth/user", {
         email,
         password,
+        name,
+        username,
       });
 
       // Access the response data
       const responseData = response.data;
-      await localStorage.removeItem("apiToken")
+
       if (responseData.token && responseData.token !== "invalid input") {
         // Decode the token
+        // const decodedToken = jwt.decode(responseData.token);
+        // const decodedToken="Hello World!"
         localStorage.setItem("apiToken", responseData.token);
         const decodedToken = jwtDecode(responseData.token);
         console.log("Decoded Token:", decodedToken);
-        if (decodedToken.is_admin) {
-          navigate("/succubus", { state: { user: decodedToken } });
-  console.log("User is an admin!")}
-  else{
-    // Redirect to "/user" and pass the decoded token as state
-    navigate("/user", { state: { user: decodedToken } });
-  }
-      
+        // Redirect to "/user" and pass the decoded token as state
+        navigate("/user", { state: { user: decodedToken } });
       } else {
         // Handle unsuccessful login (e.g., display alert)
         alert("Invalid input!");
       }
     } catch (error) {
-      console.error("Error logging in:", error.message)
+      console.error("Error logging in:", error.message);
     }
   };
 
@@ -85,6 +100,30 @@ function Login() {
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                />
+                <label htmlFor="exampleFormControlInput22" className=""></label>
+              </div>
+
+              <div className="mb-6 relative" data-te-input-wrapper-init>
+                <input
+                  type="text"
+                  className="border-2 border-black rounded-lg w-full p-4"
+                  id="exampleFormControlInput22"
+                  placeholder="Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <label htmlFor="exampleFormControlInput22" className=""></label>
+              </div>
+
+              <div className="mb-6 relative" data-te-input-wrapper-init>
+                <input
+                  type="text"
+                  className="border-2 border-black rounded-lg w-full p-4"
+                  id="exampleFormControlInput22"
+                  placeholder="Username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                 />
                 <label htmlFor="exampleFormControlInput22" className=""></label>
               </div>

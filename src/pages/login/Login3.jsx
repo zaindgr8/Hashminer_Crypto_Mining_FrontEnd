@@ -3,11 +3,14 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+// import jwt from "jsonwebtoken";
 
 function Login() {
   const [isFocused, setIsFocused] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [apiResponse, setApiResponse] = useState(null); // New state to hold API response
   const navigate = useNavigate();
 
   const handleFocus = () => {
@@ -20,33 +23,43 @@ function Login() {
     }
   };
 
-  const loginUser = async (userInfo) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:3000/auth/login",
-        userInfo
-      );
-      console.log(response.data);
-      return response.data;
-    } catch (error) {
-      console.error("Error logging in:", error.message);
-      throw error;
-    }
-  };
+  // const handleSubmit = async () => {
+  //   try {
+  //     const response = await axios.post("http://localhost:3000/auth/login", {
+  //       email,
+  //       password,
+  //     });
 
-  const handleLogin = async () => {
+  //     // Set the API response to the state
+  //     setApiResponse(response.data);
+  //   } catch (error) {
+  //     console.error("Error logging in:", error.message);
+  //     // Handle login error, if needed
+  //   }
+  // };
+
+  const handleSubmit = async () => {
     try {
-      const response = await loginUser({
+      const response = await axios.post("http://localhost:3000/auth/login", {
         email,
         password,
       });
 
-      if (response.data) {
-        // Successful login, navigate to "/user"
-        navigate("/user");
+      // Access the response data
+      const responseData = response.data;
+
+      if (responseData.token && responseData.token !== "invalid input") {
+        // Decode the token
+        // const decodedToken = jwt.decode(responseData.token);
+        // const decodedToken="Hello World!"
+        localStorage.setItem("apiToken", responseData.token);
+        const decodedToken = jwtDecode(responseData.token);
+        console.log("Decoded Token:", decodedToken);
+        // Redirect to "/user" and pass the decoded token as state
+        navigate("/user", { state: { user: decodedToken } });
       } else {
-        // Handle other non-200 status codes
-        throw new Error("Invalid credentials");
+        // Handle unsuccessful login (e.g., display alert)
+        alert("Invalid input!");
       }
     } catch (error) {
       console.error("Error logging in:", error.message);
@@ -119,9 +132,9 @@ function Login() {
               </div>
 
               <div className="text-center lg:text-left">
-                <Link to="/user">
+                <Link to="/Login">
                   <button
-                    onClick={handleLogin}
+                    onClick={handleSubmit}
                     type="button"
                     className="border-2 bg-blue-500 p-3 rounded-xl text-white hover:bg-black hover:text-blue-500"
                     data-te-ripple-init
@@ -138,6 +151,11 @@ function Login() {
                   >
                     Register
                   </a>
+                  {apiResponse && (
+                    <div className="mb-4 text-green-500">
+                      API Response: {JSON.stringify(apiResponse)}
+                    </div>
+                  )}
                 </p>
               </div>
             </form>

@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
-import { IoIosWallet } from "react-icons/io";
-import { MdEmail } from "react-icons/md";
 
 const Upload = () => {
   const generateRandomCode = () => {
@@ -41,6 +39,25 @@ const Upload = () => {
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handleFullNameChange = (event) => {
+    setFullName(event.target.value);
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const validateInputs = () => {
@@ -133,15 +150,14 @@ const Upload = () => {
           Accept: "application/json",
         },
       });
+
       if (response.ok) {
         alert(
-          "Your support request has been successfully submitted. Your update will be available within 24 hours."
+          "Your package request has been successfully submitted. Your update will be available within 24 hours."
         );
         // Optionally, you can redirect or perform other actions upon successful task creation.
       } else {
-        alert(
-          "Please ensure that the information you provide is accurate and complete."
-        );
+        console.error("Could not add task");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -163,51 +179,26 @@ const Upload = () => {
 
         <div className="max-w-full flex p-10">
           <form onSubmit={handleSubmit}>
-            <h2 className="mb-6 text-blue-500 text-4xl tracking-tight font-extrabold text-center light:text-white">
-              Please Share Your Inquiry With Us.
-            </h2>
-            <div>
-              <div className="relative">
-                <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 light:text-gray-300"
-                >
-                  Your Email:
-                </label>
-                <input
-                  type="text"
-                  id="first_name"
-                  className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-primary-500 light:focus:border-primary-500 light:shadow-sm-light"
-                  value={title}
-                  onChange={handleTitleChange}
-                  required
-                />
-              </div>
-            </div>
-            <br />
-            <div className="sm:col-span-2">
-              <label
-                htmlFor="message"
-                className="block mb-2 text-sm font-medium text-gray-900 light:text-gray-400"
-              >
-                Your message
-              </label>
-              <textarea
+            <label className="mt-[4vh] block mb-2 text-sm font-medium text-gray-900 light:text-gray-300">
+              Full Name:
+              <input
+                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-primary-500 light:focus:border-primary-500 light:shadow-sm-light"
                 type="text"
-                id="message"
-                rows="6"
-                className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-primary-500 light:focus:border-primary-500"
-                value={description}
-                onChange={handleDescriptionChange}
-                required
+                value={title}
+                onChange={handleTitleChange}
               />
-            </div>
+            </label>
             <br />
-
+            <label className="block mb-2 text-sm font-medium text-gray-900 light:text-gray-300">
+              Email Address:
+              <input
+                value={description}
+                className="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-primary-500 light:focus:border-primary-500 light:shadow-sm-light"
+                onChange={handleDescriptionChange}
+              />
+            </label>
+            <br />
             <label className="flex flex-col justify-start text-sm font-medium text-gray-700">
-              <p className="font-bold">
-                Please include an image of your query here.
-              </p>
               <input
                 className="mt-2 p-2   rounded-md"
                 type="file"
@@ -223,8 +214,8 @@ const Upload = () => {
             </button>
             <p className="mt-5 text-md sm:text-sm">
               <p className="text-blue-500">
-               * You can expect to receive a response within 24 hours of
-                submitting your query.
+                * Attach Screenshot of Payment Proof & start earning ur profit
+                from today.
               </p>
             </p>
           </form>

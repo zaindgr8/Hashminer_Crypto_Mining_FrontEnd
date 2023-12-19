@@ -7,6 +7,9 @@ import mining2a from "../../assets/mining2a.png";
 import mining2b from "../../assets/mining2b.png";
 import mining2c from "../../assets/mining2c.png";
 // import { CheckIcon, ChevronDownIcon } from "@heroicons/react/solid";
+import Upload from "../user/Form/imageUpload"
+import { useEffect } from "react";
+import axios from "axios";
 
 const people = [
   {
@@ -42,36 +45,62 @@ const people = [
 ];
 
 function classNames(...classes) {
+  
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Example() {
-  const [activeButton, setActiveButton] = useState(null);
-  const [activeButton1, setActiveButton1] = useState(null);
-  const [activeButton2, setActiveButton2] = useState(null);
-  const [activeButton3, setActiveButton3] = useState(null);
-  const [activeButton4, setActiveButton4] = useState(null);
-  const [activeButton5, setActiveButton5] = useState(null);
+  const [email, setEmail] = useState("");
 
+   useEffect(() => {
+    // Inside the useEffect, access the local storage
+    const storedApiToken = localStorage.getItem("apiToken");
 
-  const handleClick = (amount) => {
-    setActiveButton(amount);
+    // Check if the token exists
+    if (storedApiToken) {
+      // Use the token in your API requests
+      console.log("API Token:", storedApiToken);
+    } else {
+      console.log("No API token found in local storage");
+    }
+
+    // You can add dependencies to the array below if needed
+  }, []); // The empty dependency array ensures that this effect runs once when the component mounts
+
+  // Rest of your component logic
+
+  const apiEndpoint = "http://localhost:3000/packages/request_package";
+
+  // Function to get API token from local storage
+  const getApiToken = () => {
+    return localStorage.getItem("apiToken");
   };
-  const handleClick1 = (amount) => {
-    setActiveButton1(amount);
+
+  // Axios function with token included in headers
+  const axiosWithAuth = async (requestData) => {
+    const token = getApiToken();
+
+    if (!token) {
+      // Handle the case where the token is not available
+      console.error("No API token found in local storage");
+      return;
+    }
+
+    try {
+      const response = await axios.post(apiEndpoint, requestData, {
+        headers: {
+          Authorization: token,
+          "Content-Type": "application/json", // Adjust content type as needed
+        },
+      });
+
+      // Handle the response as needed
+      console.log("Response:", response.data);
+    } catch (error) {
+      // Handle errors
+      console.error("Error:", error.message);
+    }
   };
-  const handleClick2 = (amount) => {
-    setActiveButton2(amount);
-  };
-  const handleClick3 = (amount) => {
-    setActiveButton3(amount);
-  };
-  const handleClick4 = (amount) => {
-    setActiveButton4(amount);
-  };
-   const handleClick5 = (amount) => {
-     setActiveButton5(amount);
-   };
    
   const [selected, setSelected] = useState(people[3]);
 
@@ -94,13 +123,8 @@ export default function Example() {
                   <span className="ml-3 block truncate">{selected.name}</span>
                 </span>
                 <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
-                  {/* <ChevronUpDownIcon
-                  className="h-5 w-5 text-gray-400"
-                  aria-hidden="true"
-                /> */}
                 </span>
               </Listbox.Button>
-
               <Transition
                 show={open}
                 as={Fragment}
@@ -145,7 +169,6 @@ export default function Example() {
                                 "absolute inset-y-0 right-0 flex items-center pr-4"
                               )}
                             >
-                              {/* <CheckIcon className="h-5 w-5" aria-hidden="true" /> */}
                             </span>
                           ) : null}
                         </>
@@ -159,54 +182,7 @@ export default function Example() {
         )}
       </Listbox>
       <div className="gap-x-3 grid-cols-3 grid gap-y-3 mt-3">
-        <button
-          className={`bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border ${
-            activeButton === 100 ? "border-blue-500" : "border-gray-400"
-          } rounded shadow focus:outline-none`}
-          onClick={() => handleClick(100)}
-        >
-          Pay 100 USD
-        </button>
-        <button
-          className={`bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border ${
-            activeButton1 === 100 ? "border-blue-500" : "border-gray-400"
-          } rounded shadow focus:outline-none`}
-          onClick={() => handleClick1(100)}
-        >
-          Pay 1000 USD
-        </button>
-        <button
-          className={`bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border ${
-            activeButton2 === 100 ? "border-blue-500" : "border-gray-400"
-          } rounded shadow focus:outline-none`}
-          onClick={() => handleClick2(100)}
-        >
-          Pay 2000 USD
-        </button>
-        <button
-          className={`bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border ${
-            activeButton3 === 100 ? "border-blue-500" : "border-gray-400"
-          } rounded shadow focus:outline-none`}
-          onClick={() => handleClick3(100)}
-        >
-          Pay 5000 USD
-        </button>
-        <button
-          className={`bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border ${
-            activeButton4 === 100 ? "border-blue-500" : "border-gray-400"
-          } rounded shadow focus:outline-none`}
-          onClick={() => handleClick4(100)}
-        >
-          Pay 8000 USD
-        </button>
-        <button
-          className={`bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border ${
-            activeButton5 === 100 ? "border-blue-500" : "border-gray-400"
-          } rounded shadow focus:outline-none`}
-          onClick={() => handleClick5(100)}
-        >
-          Pay 10000 USD
-        </button>
+        <Upload />
       </div>
     </div>
   );

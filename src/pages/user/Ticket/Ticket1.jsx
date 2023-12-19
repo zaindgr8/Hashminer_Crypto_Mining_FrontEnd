@@ -1,24 +1,21 @@
 import Sidebar from "../Sidebar/Sidebar";
 import { IoIosAlert } from "react-icons/io";
-import Navbar from "../../Components/Navbar/Navbar"
+import Navbar from "../Navbar/Navbar";
 import React, { useState } from "react";
 
-
-
-
 const Ticket = () => {
-    const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
-    const handleImageChange = (event) => {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setSelectedImage(reader.result);
-        };
-        reader.readAsDataURL(file);
-      }
-    };
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <div className="details">
@@ -32,9 +29,9 @@ const Ticket = () => {
         <section className="">
           <div className="py-4 px-4 mx-auto max-w-screen-md">
             <h2 className="mb-6 text-blue-500 text-4xl tracking-tight font-extrabold text-center light:text-white">
-              Submit New Support Ticket123
+              Submit New Support Ticket
             </h2>
-           
+
             <form action="#" className="space-y-8">
               <div>
                 <label
@@ -47,7 +44,7 @@ const Ticket = () => {
                   type="email"
                   id="email"
                   className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-primary-500 light:focus:border-primary-500 light:shadow-sm-light"
-                  placeholder="name@flowbite.com"
+                  placeholder="Enter Your Email"
                   required
                 />
               </div>
@@ -62,7 +59,7 @@ const Ticket = () => {
                   type="text"
                   id="subject"
                   className="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-primary-500 light:focus:border-primary-500 light:shadow-sm-light"
-                  placeholder="Let us know how we can help you"
+                  placeholder="Add subject f your query"
                   required
                 />
               </div>
@@ -77,7 +74,7 @@ const Ticket = () => {
                   id="message"
                   rows="6"
                   className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-primary-500 light:focus:border-primary-500"
-                  placeholder="Leave a comment..."
+                  placeholder="Let us know briefly how we can help you..."
                 ></textarea>
               </div>
               <button
@@ -91,8 +88,7 @@ const Ticket = () => {
                 <label
                   htmlFor="imageInput"
                   className="block text-sm font-medium text-gray-700"
-                >
-                </label>
+                ></label>
                 <input
                   type="file"
                   id="imageInput"
@@ -109,4 +105,4 @@ const Ticket = () => {
   );
 };
 
-export default Ticket
+export default Ticket;

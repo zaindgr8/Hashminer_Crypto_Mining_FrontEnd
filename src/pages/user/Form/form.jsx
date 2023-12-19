@@ -3,7 +3,7 @@ import Dropdown from "../Dropdown/dropdown";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import Packages from "../../components/packages";
-import Upload from "./imageUpload"
+
 
 
 function Form() {
@@ -17,7 +17,7 @@ function Form() {
         <div className="p-[10vh]">
           <Packages />
          
-          <Upload />
+          
         </div>
       </div>
     </div>

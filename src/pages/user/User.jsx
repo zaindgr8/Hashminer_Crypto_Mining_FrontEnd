@@ -1,6 +1,4 @@
-import { useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Cookies from "js-cookie";
 // import { ColorContext } from "./ColorContext/darkContext";
 import Home from "./Home/Home";
 import Orders from "./Orders/Orders";
@@ -20,6 +18,10 @@ import ReferralForm from "./Referal/Referral";
 import Ticket from "./Ticket/Ticket";
 import { useCookies } from "react-cookie";
 import { useAuth } from "@clerk/clerk-react";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
+import axios from "axios";
 
 
 // Dynamicaly change the data for different pages(replaceable)
@@ -154,15 +156,60 @@ const blogInputs = [
 ];
 
 function App() {
+  const location = useLocation();
   const [cookies, setCookie] = useCookies(["token"]);
-  console.log(cookies);
-  // color state management using react context
-  // const { darkMode } = useContext(ColorContext);
+  const { user } = location.state || {};
+  const [userPackages, setUserPackages] = useState([]);
+
+
+
+  useEffect(() => {
+    // Function to get the token from local storage
+    const getAuthToken = () => {
+      return localStorage.getItem("apiToken");
+    };
+
+    // Function to decode the token
+    const decodeToken = (token) => {
+      try {
+        return jwtDecode(token);
+      } catch (error) {
+        console.error("Error decoding token:", error.message);
+        return null;
+      }
+    };
+
+    // Get the token from local storage
+    const token = getAuthToken();
+
+    if (token) {
+      // Decode the token
+      const decoded = decodeToken(token);
+
+      // Make an API call with the token in the headers
+      axios
+        .get("http://localhost:3000/packages/user_packages", {
+          headers: {
+            Authorization: token,
+            "Content-Type": "application/json", // Adjust content type as needed
+          },
+        })
+        .then((response) => {
+          // Handle the response from the server
+          console.log("API Response:", response.data);
+          setUserPackages((prev) => [...prev, ...response.data]);
+        })
+        .catch((error) => {
+          // Handle errors
+          console.error("Error making API call:", error.message);
+        });
+    }
+  }, []); 
 
   return (
     // <div className={darkMode ? "App dark" : "App"}>
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Home user={user} />} />
       <Route path="/pu" element={<ProfileUser />} />
       <Route path="/referral" element={<ReferralForm />} />
       <Route path="/form" element={<Form />} />

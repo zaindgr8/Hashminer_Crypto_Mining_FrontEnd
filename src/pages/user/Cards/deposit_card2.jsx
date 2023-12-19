@@ -1,47 +1,38 @@
-import { GiPayMoney } from "react-icons/gi";
+import { MdOutlineAttachMoney } from "react-icons/md";
+import { GiMoneyStack } from "react-icons/gi";
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 
-const Card = ({ title, description, description1, button, href }) => {
-  const [userInfo, setUserInfo] = useState(null);
+const Card = ({ title, description, button, href }) => {
   const [userStatus, setUserStatus] = useState(null);
+  const [userInfo, setUserInfo] = useState(null);
+  useEffect(() => {
+    // Fetch the token from localStorage
+    const storedToken = localStorage.getItem("apiToken");
 
- useEffect(() => {
-   // Function to get the token from local storage
-   const getAuthToken = () => {
-     const token = localStorage.getItem("apiToken");
-     return token;
-   };
+    // Check if the token exists
+    if (storedToken) {
+      try {
+        // Decode the token
+        const decodedToken = jwtDecode(storedToken);
+        console.log(decodedToken);
 
-   // Function to decode the token and extract the user object
-   const decodeToken = (token) => {
-     try {
-       const decoded = jwtDecode(token);
-       return decoded;
-     } catch (error) {
-       console.error("Error decoding token:", error.message);
-       return null;
-     }
-   };
-
-   // Get the token from local storage
-   const token = getAuthToken();
-
-   if (token) {
-     // Decode the token
-     const decoded = decodeToken(token);
-
-     if (decoded) {
-       // Set the user object in the component state
-       setUserStatus((prev) => ({
-         ...prev,
-         ...decoded,
-       }));
-     }
-   }
- }, []); 
-   
-
+        // Set user info in the state
+        setUserInfo((prev) => {
+          // Return the updated state based on the decoded token
+          return { ...prev, ...decodedToken };
+        });
+        setUserStatus((prev) => {
+          // Return the updated state based on the decoded token's status
+          return decodedToken.status || null;
+        });
+      } catch (error) {
+        console.error("Error decoding token:", error.message);
+        // Handle error, e.g., remove invalid token from localStorage
+        localStorage.removeItem("apiToken");
+      }
+    }
+  }, []); // The empty dependency array ensures that this effect runs only once on component mount
   return (
     <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow light:bg-gray-800 light:border-gray-700">
       <a href={href}>
@@ -50,18 +41,11 @@ const Card = ({ title, description, description1, button, href }) => {
         </h5>
       </a>
       <p className="mb-3 flex items-center gap-x-2 font-normal text-gray-700 light:text-gray-400">
-        <GiPayMoney />
-        {userStatus && userStatus.status}
-      </p>
-      {/* <p className="mb-3 flex items-center gap-x-2 font-normal text-gray-700 light:text-gray-400">
-        <TbPackages /> */}
+        <GiMoneyStack />
+        {/* {userInfo[0]?.price} */}
 
-      {/* {userInfo.status === "pending" ? (
-         " Your request is pending"
-        ) : (
-          {description}
-        )} */}
-      {/* </p> */}
+        <MdOutlineAttachMoney />
+      </p>
       <div className="flex gap-y-2">
         <a
           href="/form"

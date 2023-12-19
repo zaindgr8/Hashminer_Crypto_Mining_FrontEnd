@@ -1,5 +1,3 @@
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import BarChartIcon from "@mui/icons-material/BarChart";
 import CloseIcon from "@mui/icons-material/Close";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import DashboardIcon from "@mui/icons-material/Dashboard";
@@ -7,13 +5,14 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import PersonIcon from "@mui/icons-material/Person";
 import SearchIcon from "@mui/icons-material/Search";
-import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 // import { ColorContext } from '../../ColorContext/darkContext';
 import { UserButton } from "@clerk/clerk-react";
 import { CiEdit } from "react-icons/ci";
 import { useUser } from "@clerk/clerk-react";
+import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+
 
 // import sass file
 import "./navbar.scss";
@@ -46,7 +45,7 @@ function Navbar() {
             <MenuIcon className="menu_icon" onClick={handleToggle} />
           )}
 
-          <Link to="/" style={{ textDecoration: "none" }}>
+          <Link to="/user" style={{ textDecoration: "none" }}>
             <h3 className="text_none">Dashboard</h3>
           </Link>
         </div>
@@ -99,37 +98,32 @@ function Navbar() {
               <div className="links">
                 <ul>
                   <p className="spann">Main</p>
-                  <Link to="/" style={{ textDecoration: "none" }}>
+                  <Link to="/user" style={{ textDecoration: "none" }}>
                     <li>
                       <DashboardIcon className="icon" /> Dashboard
                     </li>
                   </Link>
 
                   <p className="spann">lists</p>
-                  <Link to="/users" style={{ textDecoration: "none" }}>
+                  <Link to="/referral" style={{ textDecoration: "none" }}>
                     <li>
                       <PersonIcon className="icon" /> Referrals
-                    </li>
-                  </Link>
-                  <Link to="/orders" style={{ textDecoration: "none" }}>
-                    <li>
-                      <CreditCardIcon className="icon" /> Daily Transactions
                     </li>
                   </Link>
                   {/* <li>
                                         <CreditCardIcon className="icon" /> Balance
                                     </li> */}
-                  <li>
-                    <BarChartIcon className="icon" /> Bonuses
-                  </li>
-
-                  <p className="spann">Setings</p>
-                  <li>
-                    <AccountCircleIcon className="icon" /> Profile
-                  </li>
-                  <li>
-                    <SettingsRoundedIcon className="icon" /> Setting
-                  </li>
+                  <p className="spann">PAYMENTS</p>
+                  <Link to="/form" style={{ textDecoration: "none" }}>
+                    <li>
+                      <CurrencyExchangeIcon className="icon" /> Manage Deposits
+                    </li>
+                  </Link>
+                  <Link to="/withdraw" style={{ textDecoration: "none" }}>
+                    <li>
+                      <CreditCardIcon className="icon" /> Manage Withdraw
+                    </li>
+                  </Link>
                   <li>
                     <LogoutIcon className="icon" /> Log Out
                   </li>
