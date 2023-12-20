@@ -29,8 +29,6 @@ const registerUser = async () => {
   try {
     const response = await axios.post("http://localhost:3000/auth/user", {
       name,
-
-      username,
       email,
       password,
     });
@@ -121,34 +119,8 @@ const handleSubmit = async () => {
                   className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none light:text-neutral-200 light:peer-focus:text-primary"
                 ></label>
               </div>
-              <div className="relative mb-6" data-te-input-wrapper-init>
-                <input
-                  type="text"
-                  className="border-2 border-black rounded-lg w-full p-4"
-                  id="exampleFormControlInput22"
-                  placeholder="Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-                <label
-                  for="exampleFormControlInput22"
-                  className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none light:text-neutral-200 light:peer-focus:text-primary"
-                ></label>
-              </div>
-              <div className="relative mb-6" data-te-input-wrapper-init>
-                <input
-                  type="text"
-                  className="border-2 border-black rounded-lg w-full p-4"
-                  id="exampleFormControlInput22"
-                  placeholder="Referral Link"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-                <label
-                  for="exampleFormControlInput22"
-                  className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none light:text-neutral-200 light:peer-focus:text-primary"
-                ></label>
-              </div>
+           
+           
               <div className="relative mb-6" data-te-input-wrapper-init>
                 <input
                   type="email"
