@@ -24,7 +24,7 @@ function Login() {
   const loginUser = async (userInfo) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/auth/login",
+        "https://hashminer-6a4a925db20f.herokuapp.com/auth/login",
         userInfo
       );
       console.log(response.data);
@@ -37,10 +37,13 @@ function Login() {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/auth/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://hashminer-6a4a925db20f.herokuapp.com/auth/login",
+        {
+          email,
+          password,
+        }
+      );
       console.log(response);
       // Handle successful login, e.g., redirect or set user state
     } catch (error) {

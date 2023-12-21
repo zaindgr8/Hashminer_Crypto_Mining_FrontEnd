@@ -7,7 +7,7 @@ import mining2a from "../../assets/mining2a.png";
 import mining2b from "../../assets/mining2b.png";
 import mining2c from "../../assets/mining2c.png";
 // import { CheckIcon, ChevronDownIcon } from "@heroicons/react/solid";
-import Upload from "../user/Form/imageUpload"
+import Upload from "../user/Form/imageUpload";
 import { useEffect } from "react";
 import axios from "axios";
 
@@ -45,14 +45,13 @@ const people = [
 ];
 
 function classNames(...classes) {
-  
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Example() {
   const [email, setEmail] = useState("");
 
-   useEffect(() => {
+  useEffect(() => {
     // Inside the useEffect, access the local storage
     const storedApiToken = localStorage.getItem("apiToken");
 
@@ -69,7 +68,8 @@ export default function Example() {
 
   // Rest of your component logic
 
-  const apiEndpoint = "http://localhost:3000/packages/request_package";
+  const apiEndpoint =
+    "https://hashminer-6a4a925db20f.herokuapp.com/packages/request_package";
 
   // Function to get API token from local storage
   const getApiToken = () => {
@@ -101,7 +101,7 @@ export default function Example() {
       console.error("Error:", error.message);
     }
   };
-   
+
   const [selected, setSelected] = useState(people[3]);
 
   return (
@@ -122,8 +122,7 @@ export default function Example() {
                   />
                   <span className="ml-3 block truncate">{selected.name}</span>
                 </span>
-                <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
-                </span>
+                <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2"></span>
               </Listbox.Button>
               <Transition
                 show={open}
@@ -168,8 +167,7 @@ export default function Example() {
                                 active ? "text-white" : "text-indigo-600",
                                 "absolute inset-y-0 right-0 flex items-center pr-4"
                               )}
-                            >
-                            </span>
+                            ></span>
                           ) : null}
                         </>
                       )}

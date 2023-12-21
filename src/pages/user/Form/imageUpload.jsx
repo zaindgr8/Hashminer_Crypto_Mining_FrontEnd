@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Qr from "./qr.png"
+import Qr from "./qr.png";
 import { IoIosWallet } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
@@ -97,7 +97,7 @@ const Upload = () => {
       formData.append("email", email);
 
       const response = await axios.post(
-        "http://localhost:3000/packages/request_package",
+        "https://hashminer-6a4a925db20f.herokuapp.com/packages/request_package",
         formData,
         {
           headers: {
@@ -106,15 +106,18 @@ const Upload = () => {
           },
         }
       );
-      const response2 = await fetch("http://localhost:3000/task", {
-        method: "POST",
-        body: formData,
-        headers: {
-          Authorization: token,
-          // "Content-Type": "multipart/form-data",
-          Accept: "application/json",
-        },
-      });
+      const response2 = await fetch(
+        "https://hashminer-6a4a925db20f.herokuapp.com/task",
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Authorization: token,
+            // "Content-Type": "multipart/form-data",
+            Accept: "application/json",
+          },
+        }
+      );
 
       if (response2.ok) {
         console.log("Task added successfully");
@@ -143,15 +146,18 @@ const Upload = () => {
         console.error("No API token found in local storage");
         return;
       }
-      const response = await fetch("http://localhost:3000/task", {
-        method: "POST",
-        body: formData,
-        headers: {
-          Authorization: token,
-          // "Content-Type": "multipart/form-data",
-          Accept: "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://hashminer-6a4a925db20f.herokuapp.com/task",
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Authorization: token,
+            // "Content-Type": "multipart/form-data",
+            Accept: "application/json",
+          },
+        }
+      );
 
       if (response.ok) {
         alert(
@@ -159,7 +165,9 @@ const Upload = () => {
         );
         // Optionally, you can redirect or perform other actions upon successful task creation.
       } else {
-        alert("Please ensure that the information you provide is accurate and complete.");
+        alert(
+          "Please ensure that the information you provide is accurate and complete."
+        );
       }
     } catch (error) {
       console.error("Error:", error);

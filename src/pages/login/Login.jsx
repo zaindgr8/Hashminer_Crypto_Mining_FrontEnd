@@ -15,24 +15,27 @@ function Login() {
 
   const handleFocus = () => {
     setIsFocused(true);
-  }
+  };
 
   const handleBlur = (e) => {
     if (!e.target.value) {
       setIsFocused(false);
     }
-  }
+  };
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/auth/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://hashminer-6a4a925db20f.herokuapp.com/auth/login",
+        {
+          email,
+          password,
+        }
+      );
 
       // Access the response data
       const responseData = response.data;
-      await localStorage.removeItem("apiToken")
+      await localStorage.removeItem("apiToken");
       if (responseData.token && responseData.token !== "invalid input") {
         // Decode the token
         localStorage.setItem("apiToken", responseData.token);
@@ -40,18 +43,17 @@ function Login() {
         console.log("Decoded Token:", decodedToken);
         if (decodedToken.is_admin) {
           navigate("/succubus", { state: { user: decodedToken } });
-  console.log("User is an admin!")}
-  else{
-    // Redirect to "/user" and pass the decoded token as state
-    navigate("/user", { state: { user: decodedToken } });
-  }
-      
+          console.log("User is an admin!");
+        } else {
+          // Redirect to "/user" and pass the decoded token as state
+          navigate("/user", { state: { user: decodedToken } });
+        }
       } else {
         // Handle unsuccessful login (e.g., display alert)
         alert("Invalid input!");
       }
     } catch (error) {
-      console.error("Error logging in:", error.message)
+      console.error("Error logging in:", error.message);
     }
   };
 

@@ -26,10 +26,12 @@ const Card = ({ title, description, description1, button, href }) => {
 
    // Get the token from local storage
    const token = getAuthToken();
+   console.log("token in status console:",token)
 
    if (token) {
      // Decode the token
      const decoded = decodeToken(token);
+     console.log("this is decoded: ",decoded)
 
      if (decoded) {
        // Set the user object in the component state
@@ -51,7 +53,7 @@ const Card = ({ title, description, description1, button, href }) => {
       </a>
       <p className="mb-3 flex items-center gap-x-2 font-normal text-gray-700 light:text-gray-400">
         <GiPayMoney />
-        {userStatus && userStatus.status}
+        {userStatus?.status}
       </p>
       {/* <p className="mb-3 flex items-center gap-x-2 font-normal text-gray-700 light:text-gray-400">
         <TbPackages /> */}

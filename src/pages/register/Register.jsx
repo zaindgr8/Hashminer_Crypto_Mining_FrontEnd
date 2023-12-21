@@ -11,9 +11,66 @@ function Register() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
-   const [email, setEmail] = useState("");
-   const [password, setPassword] = useState("");
-  const [apiResponse, setApiResponse] = useState(null); // New state to hold API response
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [apiResponse, setApiResponse] = useState(null);
+  const [userStatus, setUserStatus] = useState({});
+  const [refral_Link, setRefral] = useState("");
+
+  const getAuthToken = () => {
+    const token = localStorage.getItem("apiToken");
+    return token;
+  };
+
+  const decodeToken = (token) => {
+    try {
+      const decoded = jwtDecode(token);
+      return decoded;
+    } catch (error) {
+      console.error("Error decoding token:", error.message);
+      return null;
+    }
+  };
+
+  const handleButtonClick = async () => {
+    const token = getAuthToken();
+
+    if (token) {
+      const decoded = decodeToken(token);
+
+      if (decoded) {
+        setUserStatus((prev) => ({
+          ...prev,
+          ...decoded,
+        }));
+      }
+    }
+
+    try {
+      const response = await fetch(
+        "https://hashminer-6a4a925db20f.herokuapp.com/refral",
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("apiToken")}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        console.error("API request failed:", response.statusText);
+        return;
+      }
+
+      const data = await response.json();
+      console.log("API response:", data);
+
+      // Do something with the data received from the API
+    } catch (error) {
+      console.error("Error making API request:", error);
+    }
+  };
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -25,63 +82,68 @@ function Register() {
     }
   };
 
-const registerUser = async () => {
-  try {
-    const response = await axios.post("http://localhost:3000/auth/user", {
-      name,
-      email,
-      password,
-    });
+  const registerUser = async () => {
+    try {
+      const response = await axios.post(
+        "https://hashminer-6a4a925db20f.herokuapp.com/auth/user",
+        {
+          name,
+          email,
+          password,
+          refral_Link,
+        }
+      );
 
-    const responseData = response.data;
+      const responseData = response.data;
 
-    if (responseData.message === "User Created Successfully") {
-      console.log("Registration successful");
-      return true; // Indicate successful registration
-    } else {
-      console.log("Registration failed");
+      if (responseData.message === "User Created Successfully") {
+        console.log("Registration successful");
+        return true; // Indicate successful registration
+      } else {
+        console.log("Registration failed");
+        return false; // Indicate failed registration
+      }
+    } catch (error) {
+      console.error("Error registering:", error.message);
       return false; // Indicate failed registration
     }
-  } catch (error) {
-    console.error("Error registering:", error.message);
-    return false; // Indicate failed registration
-  }
-};
+  };
 
-const loginUser = async () => {
-  try {
-    const response = await axios.post("http://localhost:3000/auth/login", {
-      email,
-      password,
-    });
+  const loginUser = async () => {
+    try {
+      const response = await axios.post(
+        "https://hashminer-6a4a925db20f.herokuapp.com/auth/login",
+        {
+          email,
+          password,
+        }
+      );
 
-    const responseData = response.data;
+      const responseData = response.data;
 
-    if (responseData.token && responseData.token !== "invalid input") {
-      const decodedToken = jwtDecode(responseData.token);
-      localStorage.setItem("apiToken", responseData.token);
-      console.log("Decoded Token:", decodedToken);
-      navigate("/user", { state: { user: decodedToken } });
-      console.log("Login successful");
-    } else {
-      console.log("Login failed");
-      alert("Invalid input!");
+      if (responseData.token && responseData.token !== "invalid input") {
+        const decodedToken = jwtDecode(responseData.token);
+        localStorage.setItem("apiToken", responseData.token);
+        console.log("Decoded Token:", decodedToken);
+        navigate("/user", { state: { user: decodedToken } });
+        console.log("Login successful");
+      } else {
+        console.log("Login failed");
+        alert("Invalid input!");
+      }
+    } catch (error) {
+      console.error("Error logging in:", error.message);
     }
-  } catch (error) {
-    console.error("Error logging in:", error.message);
-  }
-};
+  };
 
-const handleSubmit = async () => {
-  const registrationSuccessful = await registerUser();
+  const handleSubmit = async () => {
+    const registrationSuccessful = await registerUser();
 
-  if (registrationSuccessful) {
-    // If registration is successful, proceed to login
-    await loginUser();
-  }
-};
-
-
+    if (registrationSuccessful) {
+      // If registration is successful, proceed to login
+      await loginUser();
+    }
+  };
 
   return (
     <section className="h-screen p-5">
@@ -119,8 +181,7 @@ const handleSubmit = async () => {
                   className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none light:text-neutral-200 light:peer-focus:text-primary"
                 ></label>
               </div>
-           
-           
+
               <div className="relative mb-6" data-te-input-wrapper-init>
                 <input
                   type="email"
@@ -129,6 +190,21 @@ const handleSubmit = async () => {
                   placeholder="Full Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                />
+                <label
+                  for="exampleFormControlInput22"
+                  className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none light:text-neutral-200 light:peer-focus:text-primary"
+                ></label>
+              </div>
+
+              <div className="relative mb-6" data-te-input-wrapper-init>
+                <input
+                  type="text"
+                  className="border-2 border-black rounded-lg w-full p-4"
+                  id="exampleFormControlInput22"
+                  placeholder="Refral Code"
+                  value={refral_Link}
+                  onChange={(e) => setRefral(e.target.value)}
                 />
                 <label
                   for="exampleFormControlInput22"

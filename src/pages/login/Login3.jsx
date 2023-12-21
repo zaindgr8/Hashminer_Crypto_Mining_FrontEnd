@@ -23,27 +23,15 @@ function Login() {
     }
   };
 
-  // const handleSubmit = async () => {
-  //   try {
-  //     const response = await axios.post("http://localhost:3000/auth/login", {
-  //       email,
-  //       password,
-  //     });
-
-  //     // Set the API response to the state
-  //     setApiResponse(response.data);
-  //   } catch (error) {
-  //     console.error("Error logging in:", error.message);
-  //     // Handle login error, if needed
-  //   }
-  // };
-
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/auth/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://hashminer-6a4a925db20f.herokuapp.com/auth/login",
+        {
+          email,
+          password,
+        }
+      );
 
       // Access the response data
       const responseData = response.data;

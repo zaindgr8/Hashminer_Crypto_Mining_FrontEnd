@@ -23,7 +23,6 @@ import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
-
 // Dynamicaly change the data for different pages(replaceable)
 const userInpDetails = [
   {
@@ -161,8 +160,6 @@ function App() {
   const { user } = location.state || {};
   const [userPackages, setUserPackages] = useState([]);
 
-
-
   useEffect(() => {
     // Function to get the token from local storage
     const getAuthToken = () => {
@@ -188,12 +185,15 @@ function App() {
 
       // Make an API call with the token in the headers
       axios
-        .get("http://localhost:3000/packages/user_packages", {
-          headers: {
-            Authorization: token,
-            "Content-Type": "application/json", // Adjust content type as needed
-          },
-        })
+        .get(
+          "https://hashminer-6a4a925db20f.herokuapp.com/packages/user_packages",
+          {
+            headers: {
+              Authorization: token,
+              "Content-Type": "application/json", // Adjust content type as needed
+            },
+          }
+        )
         .then((response) => {
           // Handle the response from the server
           console.log("API Response:", response.data);
@@ -204,7 +204,7 @@ function App() {
           console.error("Error making API call:", error.message);
         });
     }
-  }, []); 
+  }, []);
 
   return (
     // <div className={darkMode ? "App dark" : "App"}>

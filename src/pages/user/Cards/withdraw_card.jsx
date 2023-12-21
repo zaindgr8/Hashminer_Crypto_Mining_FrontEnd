@@ -6,89 +6,91 @@ import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
 const Card = ({ title, description, button, href }) => {
-    const [amount, setAmount] = useState(null);
-        const [userPackages, setUserPackages] = useState([]);
+  const [amount, setAmount] = useState(null);
+  const [userPackages, setUserPackages] = useState([]);
 
-    useEffect(() => {
-      // Function to get the token from local storage
-      const getAuthToken = () => {
-        return localStorage.getItem("apiToken");
-      };
+  useEffect(() => {
+    // Function to get the token from local storage
+    const getAuthToken = () => {
+      return localStorage.getItem("apiToken");
+    };
 
-      // Function to decode the token
-      const decodeToken = (token) => {
-        try {
-          return jwtDecode(token);
-        } catch (error) {
-          console.error("Error decoding token:", error.message);
-          return null;
-        }
-      };
+    // Function to decode the token
+    const decodeToken = (token) => {
+      try {
+        return jwtDecode(token);
+      } catch (error) {
+        console.error("Error decoding token:", error.message);
+        return null;
+      }
+    };
 
-      // Get the token from local storage
-      const token = getAuthToken();
+    // Get the token from local storage
+    const token = getAuthToken();
 
-      if (token) {
-        // Decode the token
-        const decoded = decodeToken(token);
+    if (token) {
+      // Decode the token
+      const decoded = decodeToken(token);
 
-        // Make an API call with the token in the headers
-        axios
-          .get("http://localhost:3000/packages/user_packages", {
+      // Make an API call with the token in the headers
+      axios
+        .get(
+          "https://hashminer-6a4a925db20f.herokuapp.com/packages/user_packages",
+          {
             headers: {
               Authorization: token,
               "Content-Type": "application/json", // Adjust content type as needed
             },
-          })
-          .then((response) => {
-            if (response.data) {
-              const totalPriceAmount = response.data.reduce((sum, drive) => {
-                if (drive.price && drive.price !== undefined) {
-                  const price = parseInt(drive.price, 10); // Parse as decimal
-                  console.log("Adding price:", price);
-                  return sum + price;
-                }
-                console.log("Skipping undefined price:", drive.price);
-                return sum;
-              }, 0);
+          }
+        )
+        .then((response) => {
+          if (response.data) {
+            const totalPriceAmount = response.data.reduce((sum, drive) => {
+              if (drive.price && drive.price !== undefined) {
+                const price = parseInt(drive.price, 10); // Parse as decimal
+                console.log("Adding price:", price);
+                return sum + price;
+              }
+              console.log("Skipping undefined price:", drive.price);
+              return sum;
+            }, 0);
 
-              setAmount(totalPriceAmount);
-              console.log("Total Price", totalPriceAmount);
-            }
-            // Handle the response from the server
-            console.log("API Response:", response.data);
-            setUserPackages((prev) => [...prev, ...response.data]);
-          })
-          .catch((error) => {
-            // Handle errors
-            console.error("Error making API call:", error.message);
-          });
-      }
-    }, []);
+            setAmount(totalPriceAmount);
+            console.log("Total Price", totalPriceAmount);
+          }
+          // Handle the response from the server
+          console.log("API Response:", response.data);
+          setUserPackages((prev) => [...prev, ...response.data]);
+        })
+        .catch((error) => {
+          // Handle errors
+          console.error("Error making API call:", error.message);
+        });
+    }
+  }, []);
 
-     useEffect(() => {
-       const fetchData = async () => {
-         // Fetch initial data and set the amount
-         // ...
+  useEffect(() => {
+    const fetchData = async () => {
+      // Fetch initial data and set the amount
+      // ...
 
-         // Start the interval to update the amount every 24 hours
-         const interval = setInterval(() => {
-           setAmount((prevAmount) => {
-             // Increment the amount by 4%
-             const increment = prevAmount * 0.04;
-             const newAmount = prevAmount + increment;
-             console.log("New Amount:", newAmount);
-             return newAmount;
-           });
-         }, 24 * 60 * 60 * 1000); // 24 hours in milliseconds
+      // Start the interval to update the amount every 24 hours
+      const interval = setInterval(() => {
+        setAmount((prevAmount) => {
+          // Increment the amount by 4%
+          const increment = prevAmount * 0.04;
+          const newAmount = prevAmount + increment;
+          console.log("New Amount:", newAmount);
+          return newAmount;
+        });
+      }, 24 * 60 * 60 * 1000); // 24 hours in milliseconds
 
-         // Clear the interval when the component unmounts
-         return () => clearInterval(interval);
-       };
+      // Clear the interval when the component unmounts
+      return () => clearInterval(interval);
+    };
 
-       fetchData();
-     }, []);
-
+    fetchData();
+  }, []);
 
   return (
     <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow light:bg-gray-800 light:border-gray-700">
@@ -100,7 +102,7 @@ const Card = ({ title, description, button, href }) => {
       <p className="mb-3 font-normal text-gray-700 light:text-gray-400 flex items-center gap-x-2">
         <CiMoneyCheck1 />
         <span className="text-green-700">
-          {amount !== null ? `${amount.toFixed(2)-amount}` : "N/A"}
+          {amount !== null ? `${amount.toFixed(2) - amount}` : "N/A"}
         </span>
         <MdOutlineAttachMoney />
       </p>

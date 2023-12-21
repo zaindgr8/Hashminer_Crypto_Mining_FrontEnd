@@ -4,81 +4,82 @@ import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
 function Form() {
-     const [email, setEmail] = useState("");
-     const [price, setPrice] = useState("");
-     const [startdate, setStartdate] = useState("");
-     const [expirydate, setExpirydate] = useState("");
-    const [error, setError] = useState("");
-     const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [price, setPrice] = useState("");
+  // const [startdate, setStartdate] = useState("");
+  // const [expirydate, setExpirydate] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-   const handleSubmit = async (e) => {
-     e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-     try {
-       const storedApiToken = localStorage.getItem("apiToken");
-       const response = await axios.post(
-         "http://localhost:3000/packages/assign_package",
-         {
-           email,
-           price,
-           startdate,
-           expirydate,
-         },
-         {
-           headers: {
-             Authorization: storedApiToken,
-             "Content-Type": "application/json",
-           },
-         }
-       );
-
-       // Access the response data
-       const responseData = response.data;
-       console.log(responseData);
-
-       // Check if the response status is 200 (OK)
-       if (response.status === 200) {
-         alert("Status Updated");
-       } else {
-         alert("Status not updated. Please try again.");
-       }
-     } catch (error) {
-       console.error("Error logging in:", error.message);
-       setError("Error logging in. Please try again.");
-     }
-   };
-    const apiEndpoint = "http://localhost:3000/packages/assign_package";
-
-    // Function to get API token from local storage
-    const getApiToken = () => {
-      return localStorage.getItem("apiToken");
-    };
-
-    // Axios function with token included in headers
-    const axiosWithAuth = async (requestData) => {
-      const token = getApiToken();
-
-      if (!token) {
-        // Handle the case where the token is not available
-        console.error("No API token found in local storage");
-        return;
-      }
-
-      try {
-        const response = await axios.post(apiEndpoint, requestData, {
+    try {
+      const storedApiToken = localStorage.getItem("apiToken");
+      const response = await axios.post(
+        "https://hashminer-6a4a925db20f.herokuapp.com/packages/assign_package",
+        {
+          email,
+          price,
+          // startdate,
+          // expirydate,
+        },
+        {
           headers: {
-            Authorization: token,
-            "Content-Type": "application/json", // Adjust content type as needed
+            Authorization: storedApiToken,
+            "Content-Type": "application/json",
           },
-        });
+        }
+      );
 
-        // Handle the response as needed
-        console.log("Response:", response.data);
-      } catch (error) {
-        // Handle errors
-        console.error("Error:", error.message);
+      // Access the response data
+      const responseData = response.data;
+      console.log(responseData);
+
+      // Check if the response status is 200 (OK)
+      if (response.status === 200) {
+        alert("Status Updated");
+      } else {
+        alert("Status not updated. Please try again.");
       }
-    };
+    } catch (error) {
+      console.error("Error logging in:", error.message);
+      setError("Error logging in. Please try again.");
+    }
+  };
+  const apiEndpoint =
+    "https://hashminer-6a4a925db20f.herokuapp.com/packages/assign_package";
+
+  // Function to get API token from local storage
+  const getApiToken = () => {
+    return localStorage.getItem("apiToken");
+  };
+
+  // Axios function with token included in headers
+  const axiosWithAuth = async (requestData) => {
+    const token = getApiToken();
+
+    if (!token) {
+      // Handle the case where the token is not available
+      console.error("No API token found in local storage");
+      return;
+    }
+
+    try {
+      const response = await axios.post(apiEndpoint, requestData, {
+        headers: {
+          Authorization: token,
+          "Content-Type": "application/json", // Adjust content type as needed
+        },
+      });
+
+      // Handle the response as needed
+      console.log("Response:", response.data);
+    } catch (error) {
+      // Handle errors
+      console.error("Error:", error.message);
+    }
+  };
 
   return (
     <form className="max-w-sm mx-auto" onSubmit={handleSubmit}>
@@ -114,7 +115,7 @@ function Form() {
           required
         />
       </div>
-      <div className="mb-5">
+      {/* <div className="mb-5">
         <label
           htmlFor="startDate"
           className="block mb-2 text-sm font-medium text-gray-900 light:text-white"
@@ -127,7 +128,6 @@ function Form() {
           value={startdate} // Add this line to bind the value to the state
           onChange={(e) => setStartdate(e.target.value)} // Add this line to handle input changes
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500"
-       
         />
       </div>
       <div className="mb-5">
@@ -143,9 +143,8 @@ function Form() {
           value={expirydate} // Add this line to bind the value to the state
           onChange={(e) => setExpirydate(e.target.value)} // Add this line to handle input changes
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500"
-       
         />
-      </div>
+      </div> */}
 
       <div className="flex items-start mb-5"></div>
       <div className="flex items-start mb-5">

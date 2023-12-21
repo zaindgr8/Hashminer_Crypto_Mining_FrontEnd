@@ -37,7 +37,7 @@ function Home({ user }) {
             button="Upgrade"
           />
           <Card2
-            title="Total Referrals"
+            title="Referral Balance"
             description="0"
             button="Withdraw Now"
           />

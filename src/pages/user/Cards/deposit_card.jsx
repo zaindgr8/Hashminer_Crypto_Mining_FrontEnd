@@ -5,9 +5,9 @@ import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
 const Card = ({ title, description, button, href }) => {
-  const [user, setUser] = useState(null)
-    const [userPackages, setUserPackages] = useState([])
-    const [amount, setAmount] = useState(null)
+  const [user, setUser] = useState(null);
+  const [userPackages, setUserPackages] = useState([]);
+  const [amount, setAmount] = useState(null);
 
   useEffect(() => {
     // Function to get the token from local storage
@@ -34,30 +34,29 @@ const Card = ({ title, description, button, href }) => {
 
       // Make an API call with the token in the headers
       axios
-        .get("http://localhost:3000/packages/user_packages", {
-          headers: {
-            Authorization: token,
-            "Content-Type": "application/json", // Adjust content type as needed
-          },
-        })
-        .then((response) => {
-          if(
-            response.data
-          )
+        .get(
+          "https://hashminer-6a4a925db20f.herokuapp.com/packages/user_packages",
           {
+            headers: {
+              Authorization: token,
+              "Content-Type": "application/json", // Adjust content type as needed
+            },
+          }
+        )
+        .then((response) => {
+          if (response.data) {
+            const totalPriceAmount = response.data.reduce((sum, drive) => {
+              if (drive.price && drive.price !== undefined) {
+                const price = parseInt(drive.price, 10); // Parse as decimal
+                console.log("Adding price:", price);
+                return sum + price;
+              }
+              console.log("Skipping undefined price:", drive.price);
+              return sum;
+            }, 0);
 
-         const totalPriceAmount = response.data.reduce((sum, drive) => {
-           if (drive.price && drive.price !== undefined) {
-             const price = parseInt(drive.price, 10); // Parse as decimal
-             console.log("Adding price:", price);
-             return sum + price;
-           }
-           console.log("Skipping undefined price:", drive.price);
-           return sum;
-         }, 0);
-
-              setAmount(totalPriceAmount);
-               console.log("Total Price", totalPriceAmount);
+            setAmount(totalPriceAmount);
+            console.log("Total Price", totalPriceAmount);
           }
           // Handle the response from the server
           console.log("API Response:", response.data);

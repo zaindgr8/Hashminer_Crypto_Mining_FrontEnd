@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaHandshakeAngle } from "react-icons/fa6";
-import investor1 from "./investor1.png"
-import investor2 from "./investor2.png"
-import investor3 from "./investor3.png"
+import investor1 from "./investor1.png";
+import investor2 from "./investor2.png";
+import investor3 from "./investor3.png";
 import investor4 from "./investor4.png";
 import { jwtDecode } from "jwt-decode";
-
 
 function Card() {
   const [user, setUser] = useState(null);
@@ -44,8 +43,66 @@ function Card() {
         }));
       }
     }
-  }, []); 
-  
+  }, []);
+
+  const [userStatus, setUserStatus] = useState({});
+
+  const getAuthToken = () => {
+    const token = localStorage.getItem("apiToken");
+    return token;
+  };
+
+  const decodeToken = (token) => {
+    try {
+      const decoded = jwtDecode(token);
+      return decoded;
+    } catch (error) {
+      console.error("Error decoding token:", error.message);
+      return null;
+    }
+  };
+
+  const handleButtonClick = async () => {
+    const token = getAuthToken();
+
+    if (token) {
+      const decoded = decodeToken(token);
+
+      if (decoded) {
+        setUserStatus((prev) => ({
+          ...prev,
+          ...decoded,
+        }));
+      }
+    }
+
+    try {
+      const response = await fetch(
+        "https://hashminer-6a4a925db20f.herokuapp.com/refral",
+        {
+          method: "GET",
+          headers: {
+            Authorization: token,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        console.error("API request failed:", response.statusText);
+        return;
+      }
+
+      const data = await response.json();
+      console.log("API response:", data);
+      alert("Your Referral Code is: " + data.link);
+
+      // Do something with the data received from the API
+    } catch (error) {
+      console.error("Error making API request:", error);
+    }
+  };
+
   return (
     <section className="bg-white light:bg-gray-900">
       <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
@@ -54,7 +111,6 @@ function Card() {
           className="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-100 rounded-full light:bg-gray-800 light:text-white hover:bg-gray-200 light:hover:bg-gray-700"
           role="alert"
         >
-
           <span className="text-xs bg-blue-500 rounded-full text-white px-4 py-1.5 mr-3">
             Crypto Mining
           </span>
@@ -82,24 +138,13 @@ function Card() {
           state-of-the-art machines.
         </p>
         <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-          <Link
-            to="/referral"
+          <button
             className="text-white bg-blue-500 flex flex-inline justify-center items-center p-3 hover:text-black hover:bg-green-500  rounded-xl"
+            onClick={handleButtonClick}
           >
             Get Referral
-            <svg
-              className="ml-2 -mr-1 w-5 h-5"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
-          </Link>
+          </button>
+
           <Link to="/form">
             <button className=" inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-gray-900 rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 light:text-white light:border-gray-700 light:hover:bg-gray-700 light:focus:ring-gray-800">
               <FaHandshakeAngle />
