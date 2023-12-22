@@ -10,7 +10,7 @@ import './Home.scss';
 
 function Home({ user }) {
   return (
-    <div className="home">
+    <div className="home h-screen overflow-hidden">
       <div className="home_sidebar">
         <Sidebar />
       </div>
