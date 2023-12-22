@@ -15,7 +15,7 @@ function Sidebar() {
 
 
     return (
-      <div className="sidebar text-white border-r-2 ml-2 hidden md:block">
+      <div className="sidebar text-gray-800 border-r-2 ml-2 hidden md:block">
         <div className="font-bold text-md md:text-xl lg:text-2xl ml-4 mt-4 text-blue-500">
           <Link to="/user" style={{ textDecoration: "none" }}>
             <h3 className="text_none">HASH MINER</h3>

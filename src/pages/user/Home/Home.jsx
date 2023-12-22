@@ -1,34 +1,52 @@
-// App.js
 import React from "react";
+import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
+import Card from "../Cards/deposit_card";
+import Card1 from "../Cards/withdraw_card";
+import Card2 from "../Cards/nobutton_card";
+import Card4 from "../Cards/package_card";
+import Comp from "./Comp";
+import "./Home.scss";
 
-
-function App() {
+function Home({ user }) {
+  
   return (
-    <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
-      <aside className="w-1/4 bg-gray-800 text-white p-4">
-        {/* Sidebar content goes here */}
-        <h2 className="text-xl font-semibold mb-4">Sidebar</h2>
-       <Sidebar/>
-      </aside>
-
+    <div className="w-screen h-screen overflow-hidden relative min-h-full">
+      {/* Navbar */}
+      <Navbar className="absolute w-full z-10" user={user} />
       {/* Main Content */}
-      <main className="flex-1 overflow-x-hidden p-4">
-        {/* Navbar */}
-        <header className="bg-gray-700 text-white p-4">
-          {/* Navbar content goes here */}
-          <h1 className="text-2xl font-semibold">Website Title</h1>
-        </header>
-
-        {/* Content */}
-        <section className="mt-4">
-          <h2 className="text-xl font-semibold mb-2">Main Content</h2>
-          <p>Your content goes here.</p>
-        </section>
-      </main>
+      <div className="flex h-full">
+        <Sidebar />
+        <div className="flex flex-col p-8">
+          <div className="flex gap-x-5">
+            <Card
+              user={user}
+              title="Available Balance"
+              description="5.00"
+              button="Deposit Now"
+            />
+            <Card1
+              title="Available Withdrawal"
+              description="00.00"
+              button="Withdraw Now"
+            />
+            <Card4
+              title="Package Status"
+              description="Invested: "
+              description1="Package: "
+              button="Upgrade"
+            />
+            <Card2
+              title="Referral Balance"
+              description="0"
+              button="Withdraw Now"
+            />
+          </div>
+          <Comp user={user} />
+        </div>
+      </div>
     </div>
   );
 }
 
-export default App;
+export default Home;
