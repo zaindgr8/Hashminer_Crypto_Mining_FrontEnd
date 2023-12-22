@@ -15,7 +15,6 @@ import Ticket from "./pages/user/Ticket/Ticket";
 //admin imports
 import ReferralCodeAdmin from "./pages/admin/Referal/Referral";
 import Withdraw_Admin from "./pages/admin/Form_Withdraw/form_withdraw";
-import Manage_Investor from "./pages/admin/DataTable/DataTable";
 import ChangePass_Admin from "./pages/admin/Setting/Pass_Setting";
 import Wallet_Admin from "./pages/admin/Setting/Wallet_Setting";
 import Login from "./pages/login/Login";
@@ -42,7 +41,6 @@ function App() {
         <Route path="/ticket" element={<Ticket />} />
         <Route path="/admin_referral" element={<ReferralCodeAdmin />} />
         <Route path="/withdraw_admin" element={<Withdraw_Admin />} />
-        <Route path="/manage_investor" element={<Manage_Investor />} />
         <Route path="/passwordSetting_Admin" element={<ChangePass_Admin />} />
         <Route path="/wallet_Admin" element={<Wallet_Admin />} />
         <Route path="/login" element={<Login />} />

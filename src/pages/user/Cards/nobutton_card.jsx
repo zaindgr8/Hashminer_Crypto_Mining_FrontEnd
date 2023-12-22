@@ -33,7 +33,7 @@ const Card = ({ title, description, button, href }) => {
       // Make an API call with the decoded._id in the endpoint
       axios
         .get(
-          `https://hashminer-6a4a925db20f.herokuapp.com/auth/refral_balabce/${decoded.user_id}`,
+          `https://hashminer-heroku-f3171d24210a.herokuapp.com//auth/refral_balabce/${decoded.user_id}`,
           {
             headers: {
               Authorization: token,

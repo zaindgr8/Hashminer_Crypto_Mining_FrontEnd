@@ -75,7 +75,7 @@ function Card() {
 
     try {
       const response = await fetch(
-        "https://hashminer-6a4a925db20f.herokuapp.com/refral",
+        "https://hashminer-heroku-f3171d24210a.herokuapp.com//refral",
         {
           method: "GET",
           headers: {
@@ -104,8 +104,8 @@ function Card() {
     <section className="bg-white light:bg-gray-900">
       <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12 flex flex-col justify-center items-center">
         <h1 className="font-bold text-red-400 py-3  mb-3 ">
-          * Invest today and commence earning a 4% profit starting from the
-          next day.
+          * Invest today and commence earning a 4% profit starting from the next
+          day.
           <br /> * Withdrawal of the entire capital is possible after a period
           of 25 days.
         </h1>

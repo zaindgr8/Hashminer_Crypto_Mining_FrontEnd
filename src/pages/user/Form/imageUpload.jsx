@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Qr from "./qr.png";
 import { IoIosWallet } from "react-icons/io";
@@ -10,7 +10,8 @@ const Upload = () => {
   const generateRandomCode = () => {
     return "0x1b0a98baba3d1471b160694145b974688f8fc2b1";
   };
-
+  const cloudinaryRef = useRef();
+  const widgetRef = useRef();
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
@@ -20,6 +21,19 @@ const Upload = () => {
   const [file, setFile] = useState(null);
   const [referralCode, setReferralCode] = useState(generateRandomCode());
   const [isCopied, setIsCopied] = useState(false);
+
+  useEffect(() => {
+    cloudinaryRef.current = window.cloudinary;
+    widgetRef.current = cloudinaryRef.current.createUploadWidget(
+      {
+        cloudName: "donxxf3zl",
+        uploadPreset: "eh5gpngl",
+      },
+      function (error, result) {
+        console.log(result);
+      }
+    );
+  }, []);
 
   const handleCopyCode = () => {
     navigator.clipboard.writeText(referralCode);
@@ -97,7 +111,7 @@ const Upload = () => {
       formData.append("email", email);
 
       const response = await axios.post(
-        "https://hashminer-6a4a925db20f.herokuapp.com/packages/request_package",
+        "https://hashminer-heroku-f3171d24210a.herokuapp.com//packages/request_package",
         formData,
         {
           headers: {
@@ -107,7 +121,7 @@ const Upload = () => {
         }
       );
       const response2 = await fetch(
-        "https://hashminer-6a4a925db20f.herokuapp.com/task",
+        "https://hashminer-heroku-f3171d24210a.herokuapp.com//task",
         {
           method: "POST",
           body: formData,
@@ -147,7 +161,7 @@ const Upload = () => {
         return;
       }
       const response = await fetch(
-        "https://hashminer-6a4a925db20f.herokuapp.com/task",
+        "https://hashminer-heroku-f3171d24210a.herokuapp.com//task",
         {
           method: "POST",
           body: formData,
@@ -178,6 +192,11 @@ const Upload = () => {
     axiosWithAuth();
   };
 
+  const handleReUploadClick = (e) => {
+    e.preventDefault();
+    widgetRef.current.open();
+  };
+
   return (
     <div className="max-w-full flex">
       <form onSubmit={handleSubmit}>
@@ -200,7 +219,7 @@ const Upload = () => {
         <div>
           <div className="relative mt-5">
             <input
-              type="text"
+              type="email"
               id="first_name"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-10 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500"
               placeholder="Enter Email Address"
@@ -225,14 +244,21 @@ const Upload = () => {
           <FaUser className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400" />
         </div>
         <br />
-        <label className="flex flex-col justify-start text-sm font-medium text-gray-700">
-          <input
-            className="mt-2 p-2   rounded-md"
-            type="file"
-            onChange={handleFileChange}
-          />
-        </label>
-        <br />
+        <span className="flex flex-col items-start justify-start">
+          <label className="text-sm font-medium text-gray-700">
+            <input
+              className="mt-2 p-2 rounded-md"
+              type="file"
+              onChange={handleFileChange}
+            />
+          </label>
+          <button
+            className="mb-3 border-[0.2vh] hover:bg-gray-200 text-sm border-gray-600 px-3 py-1 rounded-xl bg-gray-100 mt-2"
+            onClick={handleReUploadClick}
+          >
+            Re-Upload Proof
+          </button>
+        </span>
         <button
           className="text-white bg-green-700 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center light:bg-blue-600 light:hover:bg-blue-700 light:focus:ring-blue-800"
           type="submit"
@@ -241,7 +267,7 @@ const Upload = () => {
         </button>
         <p className="mt-5 text-md sm:text-sm">
           <p className="text-blue-500">
-            * Attach Screenshot of Payment Proof & start earning your profit from
+            * Attach Screenshot of Payment Proof & start earning ur profit from
             today.
           </p>
         </p>

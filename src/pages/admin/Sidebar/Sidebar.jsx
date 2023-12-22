@@ -55,17 +55,8 @@ function Sidebar() {
                 <CreditCardIcon className="icon" /> Manage Withdraw
               </li>
             </Link>
-            <Link to="/manage_investor" style={{ textDecoration: "none" }}>
-              <li>
-                <BsPeopleFill className="icon" /> Manage Investors
-              </li>
-            </Link>
-            {/* <li>
-                        <CreditCardIcon className="icon" /> Balance
-                    </li> */}
-            {/* <li>
-                        <BarChartIcon className="icon" /> Bonuses
-                    </li> */}
+            
+         
 
             <p className="spann">Settings</p>
             {/* <Link to="/pu">

@@ -32,19 +32,6 @@ function Navbar() {
             <h3 className="text_none">Dashboard</h3>
           </Link>
         </div>
-        <div className="search">
-          <input type="text" placeholder="Search.." />
-          <SearchIcon className="search_icon" />
-        </div>
-        <div className="item_lists">
-          <div className="item gap-x-1 items-center">
-            <MdEmail />
-            support@hashminer.com
-          </div>
-          <div className="item">
-            <img className="admin_pic" src={admin} alt="admin" />
-          </div>
-        </div>
       </div>
       <div className="res_navbar">
         {toggle && (

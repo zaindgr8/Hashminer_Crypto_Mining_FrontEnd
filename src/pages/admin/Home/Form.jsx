@@ -6,8 +6,8 @@ import { jwtDecode } from "jwt-decode";
 function Form() {
   const [email, setEmail] = useState("");
   const [price, setPrice] = useState("");
-  // const [startdate, setStartdate] = useState("");
-  // const [expirydate, setExpirydate] = useState("");
+  const [startdate, setStartdate] = useState("");
+  const [expirydate, setExpirydate] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -17,12 +17,12 @@ function Form() {
     try {
       const storedApiToken = localStorage.getItem("apiToken");
       const response = await axios.post(
-        "https://hashminer-6a4a925db20f.herokuapp.com/packages/assign_package",
+        "http://localhost:3000/packages/assign_package",
         {
           email,
           price,
-          // startdate,
-          // expirydate,
+          startdate,
+          expirydate,
         },
         {
           headers: {
@@ -47,8 +47,7 @@ function Form() {
       setError("Error logging in. Please try again.");
     }
   };
-  const apiEndpoint =
-    "https://hashminer-6a4a925db20f.herokuapp.com/packages/assign_package";
+  const apiEndpoint = "http://localhost:3000/packages/assign_package";
 
   // Function to get API token from local storage
   const getApiToken = () => {
@@ -115,36 +114,7 @@ function Form() {
           required
         />
       </div>
-      {/* <div className="mb-5">
-        <label
-          htmlFor="startDate"
-          className="block mb-2 text-sm font-medium text-gray-900 light:text-white"
-        >
-          Start Date
-        </label>
-        <input
-          type="date"
-          id="startDate"
-          value={startdate} // Add this line to bind the value to the state
-          onChange={(e) => setStartdate(e.target.value)} // Add this line to handle input changes
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500"
-        />
-      </div>
-      <div className="mb-5">
-        <label
-          htmlFor="expiryDate"
-          className="block mb-2 text-sm font-medium text-gray-900 light:text-white"
-        >
-          Expiry Date
-        </label>
-        <input
-          type="date"
-          id="expiryDate"
-          value={expirydate} // Add this line to bind the value to the state
-          onChange={(e) => setExpirydate(e.target.value)} // Add this line to handle input changes
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500"
-        />
-      </div> */}
+      
 
       <div className="flex items-start mb-5"></div>
       <div className="flex items-start mb-5">
