@@ -5,81 +5,67 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-// import { ColorContext } from '../../ColorContext/darkContext';
-import { FaWallet } from "react-icons/fa6";
 import { BsPeopleFill } from "react-icons/bs";
 import { FaTicket } from "react-icons/fa6";
-
 
 
 import './Sidebar.scss';
 
 function Sidebar() {
-    // const { darkMode, dispatch } = useContext(ColorContext);
+
 
     return (
-      <div className="sidebar">
-        <div className="logo">
+      <div className="sidebar text-gray-800 border-r-2 ml-2 hidden md:block">
+        <div className="font-bold text-md md:text-xl lg:text-2xl ml-4 mt-4 text-blue-500">
           <Link to="/user" style={{ textDecoration: "none" }}>
             <h3 className="text_none">HASH MINER</h3>
           </Link>
         </div>
 
-        <div className="links">
+        <div className="transition-all duration-200 ease-in-out font-semibold items-center ml-3 cursor-pointer text:xl md:text-2xl flex mx-3">
           <ul>
-            <p className="spann">Main</p>
+            <p className="uppercase text-gray-500 my-2 text-lg md:text-2xl">
+              Main
+            </p>
+
             <Link to="/user" style={{ textDecoration: "none" }}>
               <li>
-                <DashboardIcon className="icon" /> Dashboard
+                <DashboardIcon className="" /> Dashboard
               </li>
             </Link>
-            <Link to="/referral" style={{ textDecoration: "none" }}>
+
+            <Link to="/referral" className="flex items-center">
               <li>
-                <BsPeopleFill className="icon" /> Referral
+                <BsPeopleFill className="" /> <p>Referral</p>
               </li>
             </Link>
+
             <Link to="/ticket" style={{ textDecoration: "none" }}>
               <li>
-                <FaTicket className="icon" /> Ticket
+                <FaTicket className="" /> Ticket
               </li>
             </Link>
-            <p className="spann">PAYMENTS</p>
+            <p className="uppercase text-gray-500 my-2 text-lg md:text-2xl">
+              PAYMENTS
+            </p>
             <Link to="/form" style={{ textDecoration: "none" }}>
               <li>
-                <CurrencyExchangeIcon className="icon" /> Manage Deposits
+                <CurrencyExchangeIcon className="" /> Manage Deposits
               </li>
             </Link>
             <Link to="/withdraw" style={{ textDecoration: "none" }}>
               <li>
-                <CreditCardIcon className="icon" /> Manage Withdraw
+                <CreditCardIcon className="" /> Manage Withdraw
               </li>
             </Link>
-            {/* <li>
-                        <CreditCardIcon className="icon" /> Balance
-                    </li> */}
-            {/* <li>
-                        <BarChartIcon className="icon" /> Bonuses
-                    </li> */}
 
-            <p className="spann">Settings</p>
-            {/* <Link to="/pu">
-              <li>
-                <AccountCircleIcon className="icon" /> Profile
-              </li>
-            </Link> */}
-            {/* <Link to="/password">
-              <li>
-                <SettingsRoundedIcon className="icon" /> Change Password
-              </li>
-            </Link> */}
-            {/* <Link to="/wallet">
-              <li>
-                <FaWallet className="icon" /> Wallet Address
-              </li>
-            </Link> */}
+            <p className="uppercase text-gray-500 my-2 text-lg md:text-2xl">
+              Settings
+            </p>
+
             <Link to="/">
               <li>
-                <LogoutIcon className="icon" /> Go to Home Page
+                <LogoutIcon className="" /> Go to Home Page
               </li>
             </Link>
           </ul>
