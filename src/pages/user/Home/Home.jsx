@@ -1,67 +1,34 @@
-import React, { useEffect } from "react";
-import Navbar from "../Navbar/Navbar";
+// App.js
+import React from "react";
 import Sidebar from "../Sidebar/Sidebar";
-import Card from "../Cards/deposit_card";
-import Card1 from "../Cards/withdraw_card";
-import Card2 from "../Cards/nobutton_card";
-import Card4 from "../Cards/package_card";
-import Comp from "./Comp";
-import "./Home.scss";
 
-function Home({ user }) {
-  useEffect(() => {
-    // Update viewport meta tag when the component mounts
-    const viewportMeta = document.querySelector('meta[name="viewport"]');
-    if (viewportMeta) {
-      viewportMeta.content = 'width=device-width, initial-scale=1.0';
-    }
 
-    // Optionally, you can restore the original viewport when the component unmounts
-    return () => {
-      if (viewportMeta) {
-        // Restore the original content or update it as needed
-        viewportMeta.content = 'width=device-width, initial-scale=1.0';
-      }
-    };
-  }, []); 
-
+function App() {
   return (
-    <div className="relative w-full object-cover h-screen overflow-hidden">
-      {/* Navbar */}
-      <Navbar className="absolute w-full z-10" user={user} />
+    <div className="flex h-screen overflow-hidden">
+      {/* Sidebar */}
+      <aside className="w-1/4 bg-gray-800 text-white p-4">
+        {/* Sidebar content goes here */}
+        <h2 className="text-xl font-semibold mb-4">Sidebar</h2>
+       <Sidebar/>
+      </aside>
+
       {/* Main Content */}
-      <div className="flex h-full">
-        <Sidebar />
-        <div className="flex flex-col p-8">
-          <div className="flex gap-x-5">
-            <Card
-              user={user}
-              title="Available Balance"
-              description="5.00"
-              button="Deposit Now"
-            />
-            <Card1
-              title="Available Withdrawal"
-              description="00.00"
-              button="Withdraw Now"
-            />
-            <Card4
-              title="Package Status"
-              description="Invested: "
-              description1="Package: "
-              button="Upgrade"
-            />
-            <Card2
-              title="Referral Balance"
-              description="0"
-              button="Withdraw Now"
-            />
-          </div>
-          <Comp user={user} />
-        </div>
-      </div>
+      <main className="flex-1 overflow-x-hidden p-4">
+        {/* Navbar */}
+        <header className="bg-gray-700 text-white p-4">
+          {/* Navbar content goes here */}
+          <h1 className="text-2xl font-semibold">Website Title</h1>
+        </header>
+
+        {/* Content */}
+        <section className="mt-4">
+          <h2 className="text-xl font-semibold mb-2">Main Content</h2>
+          <p>Your content goes here.</p>
+        </section>
+      </main>
     </div>
   );
 }
 
-export default Home;
+export default App;
