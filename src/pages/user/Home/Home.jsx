@@ -41,7 +41,7 @@ function Home({ user }) {
             button="Withdraw Now"
           />
         </div>
-        <Comp user={user} />
+        {/* <Comp user={user} /> */}
       </div>
     </div>
   );
