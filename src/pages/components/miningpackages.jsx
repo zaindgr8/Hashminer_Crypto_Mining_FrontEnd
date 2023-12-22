@@ -1,6 +1,7 @@
 import React from 'react'
 import mining3 from "../../assets/mining6.png";
 import { CheckCircle2 } from "lucide-react";
+import { Link } from 'react-router-dom';
 
 const Miningpackages = ({title, investment, returns, src, imgSize, package1}) => {
   return (
@@ -49,9 +50,9 @@ const Miningpackages = ({title, investment, returns, src, imgSize, package1}) =>
           </p>
           <p className="px-5 lg:text-xl md:text-md sm:text-sm">40 USD</p>
         </div>
-        <a href="#" className="info-card__btn">
+        <Link to="/register" className="info-card__btn">
           Start mining <i className="fas fa-angle-right"></i>
-        </a>
+        </Link>
       </div>
     </div>
   );

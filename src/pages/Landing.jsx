@@ -12,7 +12,7 @@ import SubBox from "./SubBox";
 
 export default function Landing() {
   return (
-    <div className="main-container ">
+    <div className="main-container">
       <TopSection />
       <main className="main-content">
         <Hero />
