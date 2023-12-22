@@ -48,7 +48,7 @@ function Register() {
 
     try {
       const response = await fetch(
-        "https://hashminer-heroku-f3171d24210a.herokuapp.com//refral",
+        "https://hashminer-6a4a925db20f.herokuapp.com/refral",
         {
           method: "GET",
           headers: {
@@ -85,7 +85,7 @@ function Register() {
   const registerUser = async () => {
     try {
       const response = await axios.post(
-        "https://hashminer-heroku-f3171d24210a.herokuapp.com//auth/user",
+        "https://hashminer-6a4a925db20f.herokuapp.com/auth/user",
         {
           name,
           email,
@@ -112,7 +112,7 @@ function Register() {
   const loginUser = async () => {
     try {
       const response = await axios.post(
-        "https://hashminer-heroku-f3171d24210a.herokuapp.com//auth/login",
+        "https://hashminer-6a4a925db20f.herokuapp.com/auth/login",
         {
           email,
           password,

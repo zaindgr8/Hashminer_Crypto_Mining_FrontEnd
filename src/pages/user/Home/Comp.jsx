@@ -75,7 +75,7 @@ function Card() {
 
     try {
       const response = await fetch(
-        "https://hashminer-heroku-f3171d24210a.herokuapp.com//refral",
+        "https://hashminer-6a4a925db20f.herokuapp.com/refral",
         {
           method: "GET",
           headers: {

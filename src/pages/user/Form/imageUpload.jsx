@@ -111,7 +111,7 @@ const Upload = () => {
       formData.append("email", email);
 
       const response = await axios.post(
-        "https://hashminer-heroku-f3171d24210a.herokuapp.com//packages/request_package",
+        "https://hashminer-6a4a925db20f.herokuapp.com/packages/request_package",
         formData,
         {
           headers: {
@@ -121,7 +121,7 @@ const Upload = () => {
         }
       );
       const response2 = await fetch(
-        "https://hashminer-heroku-f3171d24210a.herokuapp.com//task",
+        "https://hashminer-6a4a925db20f.herokuapp.com/task",
         {
           method: "POST",
           body: formData,
@@ -161,7 +161,7 @@ const Upload = () => {
         return;
       }
       const response = await fetch(
-        "https://hashminer-heroku-f3171d24210a.herokuapp.com//task",
+        "https://hashminer-6a4a925db20f.herokuapp.com/task",
         {
           method: "POST",
           body: formData,
