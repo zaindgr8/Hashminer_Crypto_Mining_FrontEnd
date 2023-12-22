@@ -35,7 +35,7 @@ const Card = ({ title, description, button, href }) => {
       // Make an API call with the token in the headers
       axios
         .get(
-          "https://hashminer-6a4a925db20f.herokuapp.com/packages/user_packages",
+          "https://hashminer-heroku-f3171d24210a.herokuapp.com/packages/user_packages",
           {
             headers: {
               Authorization: token,

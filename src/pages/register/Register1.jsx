@@ -28,7 +28,7 @@ function Register() {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        "https://hashminer-6a4a925db20f.herokuapp.com/auth/user",
+        "https://hashminer-heroku-f3171d24210a.herokuapp.com/auth/user",
         {
           email,
           password,
