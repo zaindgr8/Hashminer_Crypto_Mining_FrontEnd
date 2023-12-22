@@ -8,7 +8,7 @@ import Packages from "../../components/packages";
 
 function Form() {
   return (
-    <div className="details">
+    <div className="grid grid-cols-[17%,83%]">
       <div className="home_sidebar">
         <Sidebar />
       </div>
@@ -16,8 +16,6 @@ function Form() {
         <Navbar />
         <div className="p-[10vh]">
           <Packages />
-         
-          
         </div>
       </div>
     </div>

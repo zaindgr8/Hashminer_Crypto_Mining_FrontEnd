@@ -159,12 +159,12 @@ const Upload = () => {
   };
 
   return (
-    <div className="home">
-      <div className="home_sidebar">
+    <div className="grid grid-cols-[17%,83%]">
+      <div className="">
         <Sidebar />
       </div>
 
-      <div className="home_main">
+      <div className="">
         <Navbar />
 
         <div className="max-w-full flex p-10">

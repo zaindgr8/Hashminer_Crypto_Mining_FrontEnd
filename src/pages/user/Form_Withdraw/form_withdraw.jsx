@@ -159,7 +159,7 @@ const Upload = () => {
   };
 
   return (
-    <div className="home">
+    <div className="grid grid-cols-[17%,83%]">
       <div className="home_sidebar">
         <Sidebar />
       </div>
