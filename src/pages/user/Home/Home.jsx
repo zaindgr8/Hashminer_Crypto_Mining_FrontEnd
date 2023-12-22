@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import Card from "../Cards/deposit_card";
@@ -9,11 +9,26 @@ import Comp from "./Comp";
 import "./Home.scss";
 
 function Home({ user }) {
+  useEffect(() => {
+    // Update viewport meta tag when the component mounts
+    const viewportMeta = document.querySelector('meta[name="viewport"]');
+    if (viewportMeta) {
+      viewportMeta.content = 'width=device-width, initial-scale=1.0';
+    }
+
+    // Optionally, you can restore the original viewport when the component unmounts
+    return () => {
+      if (viewportMeta) {
+        // Restore the original content or update it as needed
+        viewportMeta.content = 'width=device-width, initial-scale=1.0';
+      }
+    };
+  }, []); 
+
   return (
-    <div className="relative w-screen object-cover h-screen overflow-hidden">
+    <div className="relative w-full object-cover h-screen overflow-hidden">
       {/* Navbar */}
       <Navbar className="absolute w-full z-10" user={user} />
-
       {/* Main Content */}
       <div className="flex h-full">
         <Sidebar />
