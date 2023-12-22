@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
-import { IoIosWallet } from "react-icons/io";
-import { MdEmail } from "react-icons/md";
 
 const Upload = () => {
   const generateRandomCode = () => {
@@ -159,24 +157,20 @@ const Upload = () => {
   };
 
   return (
-    <div className="grid grid-cols-[17%,83%]">
-      <div className="">
+    <div className="w-screen h-screen overflow-hidden relative min-h-full">
+      <Navbar className="absolute w-full z-10" />
+      <div className="flex h-full">
         <Sidebar />
-      </div>
-
-      <div className="">
-        <Navbar />
-
-        <div className="max-w-full flex p-10">
+        <div className="p-10">
           <form onSubmit={handleSubmit}>
             <h2 className="mb-6 text-blue-500 text-4xl tracking-tight font-extrabold text-center light:text-white">
-              Please Share Your Inquiry With Us.
+              Please Share Your Inquiry With Us
             </h2>
             <div>
               <div className="relative">
                 <label
                   htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 light:text-gray-300"
+                  className="font-bold block mb-2 text-sm text-gray-900 light:text-gray-300"
                 >
                   Your Email:
                 </label>
@@ -194,7 +188,7 @@ const Upload = () => {
             <div className="sm:col-span-2">
               <label
                 htmlFor="message"
-                className="block mb-2 text-sm font-medium text-gray-900 light:text-gray-400"
+                className="block mb-2 text-sm font-bold text-gray-900 light:text-gray-400"
               >
                 Your message
               </label>
@@ -211,7 +205,7 @@ const Upload = () => {
             <br />
 
             <label className="flex flex-col justify-start text-sm font-medium text-gray-700">
-              <p className="font-bold">
+              <p className="">
                 Please include an image of your query here.
               </p>
               <input

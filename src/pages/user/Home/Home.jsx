@@ -6,7 +6,6 @@ import Card1 from "../Cards/withdraw_card";
 import Card2 from "../Cards/nobutton_card";
 import Card4 from "../Cards/package_card";
 import Comp from "./Comp";
-import "./Home.scss";
 
 function Home({ user }) {
   

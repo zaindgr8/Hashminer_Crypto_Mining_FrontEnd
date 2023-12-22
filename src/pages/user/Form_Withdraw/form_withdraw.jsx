@@ -159,14 +159,10 @@ const Upload = () => {
   };
 
   return (
-    <div className="grid grid-cols-[17%,83%]">
-      <div className="home_sidebar">
+    <div className="w-screen h-screen overflow-hidden relative min-h-full">
+      <Navbar className="absolute w-full z-10" />
+      <div className="flex h-full">
         <Sidebar />
-      </div>
-
-      <div className="home_main">
-        <Navbar />
-
         <div className="max-w-full flex p-10">
           <form onSubmit={handleSubmit}>
             <div>
@@ -199,7 +195,7 @@ const Upload = () => {
             </div>
             <br />
             <label className="flex flex-col justify-start text-sm font-medium text-gray-700">
-              <p className="font-bold">Attach QR of your Crypto Wallet:</p>
+              <p className="">Attach QR of your Crypto Wallet:</p>
               <input
                 className="mt-2 p-2   rounded-md"
                 type="file"

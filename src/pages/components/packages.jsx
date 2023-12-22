@@ -103,7 +103,7 @@ export default function Example() {
         <Listbox value={selected} onChange={setSelected}>
           {({ open }) => (
             <>
-              <Listbox.Label className="block text-sm font-medium leading-6 text-gray-900">
+              <Listbox.Label className="block text-sm font-bold leading-6 text-gray-900">
                 Choose Your Package
               </Listbox.Label>
               <div className="">

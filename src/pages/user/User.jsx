@@ -74,12 +74,12 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home user={user} />} />
-      <Route path="/pu" element={<ProfileUser />} />
+      {/* <Route path="/pu" element={<ProfileUser />} /> */}
       <Route path="/referral" element={<ReferralForm />} />
       <Route path="/form" element={<Form />} />
       <Route path="/withdraw" element={<Withdraw />} />
-      <Route path="/password" element={<Setting />} />
-      <Route path="/wallet" element={<Wallet />} />
+      {/* <Route path="/password" element={<Setting />} /> */}
+      {/* <Route path="/wallet" element={<Wallet />} /> */}
       <Route path="/ticket" element={<Ticket />} />
       <Route path="login" element={<Login />} />
     </Routes>

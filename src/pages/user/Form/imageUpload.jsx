@@ -198,7 +198,7 @@ const Upload = () => {
   };
 
   return (
-    <div className="max-w-full flex">
+    <div className="max-w-full font-bold flex">
       <form onSubmit={handleSubmit}>
         <p>Wallet Address (Send Here):</p>
         <div className="bg-gray-50 border overflow-hidden rounded-lg w-full p-2.5">
@@ -267,7 +267,7 @@ const Upload = () => {
         </button>
         <p className="mt-5 text-md sm:text-sm">
           <p className="text-blue-500">
-            * Attach Screenshot of Payment Proof & start earning ur profit from
+            * Attach Screenshot of Payment Proof & start earning your profit from
             today.
           </p>
         </p>

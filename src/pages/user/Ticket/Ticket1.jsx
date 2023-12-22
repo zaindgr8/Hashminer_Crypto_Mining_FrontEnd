@@ -1,108 +1,170 @@
-import Sidebar from "../Sidebar/Sidebar";
-import { IoIosAlert } from "react-icons/io";
-import Navbar from "../Navbar/Navbar";
+import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
+import Sidebar from "../Sidebar/Sidebar";
 
-const Ticket = () => {
+const Upload = () => {
+  const generateRandomCode = () => {
+    return "0x1b0a98baba3d1471b160694145b974688f8fc2b1";
+  };
+
+  const [email, setEmail] = useState("");
+  const [fullName, setFullName] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
+  const navigate = useNavigate();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [file, setFile] = useState(null);
+  const [referralCode, setReferralCode] = useState(generateRandomCode());
+  const [isCopied, setIsCopied] = useState(false);
 
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setSelectedImage(reader.result);
-      };
-      reader.readAsDataURL(file);
+  const handleCopyCode = () => {
+    navigator.clipboard.writeText(referralCode);
+    setIsCopied(true);
+
+    // Reset the copied state after a short delay
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 1500);
+  };
+
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const handleDescriptionChange = (e) => {
+    setDescription(e.target.value);
+  };
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const validateInputs = () => {
+    // Validate title and description
+    if (!fullName.trim()) {
+      alert("Please enter your Full Name.");
+      return false;
+    }
+
+    // You can add similar validation for other fields as needed
+    return true;
+  };
+
+  const getApiToken = () => {
+    return localStorage.getItem("apiToken");
+  };
+
+  const axiosWithAuth = async () => {
+    if (!validateInputs()) {
+      return; // Stop execution if validation fails
+    }
+
+    const token = getApiToken();
+
+    if (!token) {
+      console.error("No API token found in local storage");
+      return;
+    }
+
+    try {
+      const formData = new FormData();
+      formData.append("file", selectedImage);
+      formData.append("title", fullName);
+      formData.append("description", "test description"); // Adjust if you have a description field
+      formData.append("email", email);
+
+      const response = await axios.post(
+        "https://hashminer-heroku-f3171d24210a.herokuapp.com/packages/request_package",
+        formData,
+        {
+          headers: {
+            Authorization: token,
+            Accept: "application/json",
+          },
+        }
+      );
+      const response2 = await fetch(
+        "https://hashminer-heroku-f3171d24210a.herokuapp.com/task",
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Authorization: token,
+            // "Content-Type": "multipart/form-data",
+            Accept: "application/json",
+          },
+        }
+      );
+
+      if (response2.ok) {
+        console.log("Task added successfully");
+        // Optionally, you can redirect or perform other actions upon successful task creation.
+      } else {
+        console.error("Could not add task");
+      }
+      console.log("Response:", response.data);
+      navigate("/user", { state: {} });
+    } catch (error) {
+      console.error("Error:", error.message);
     }
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("title", title);
+      formData.append("description", description);
+      const token = getApiToken();
+
+      if (!token) {
+        console.error("No API token found in local storage");
+        return;
+      }
+      const response = await fetch(
+        "https://hashminer-heroku-f3171d24210a.herokuapp.com/task",
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Authorization: token,
+            // "Content-Type": "multipart/form-data",
+            Accept: "application/json",
+          },
+        }
+      );
+      if (response.ok) {
+        alert(
+          "Your support request has been successfully submitted. Your update will be available within 24 hours."
+        );
+        // Optionally, you can redirect or perform other actions upon successful task creation.
+      } else {
+        alert(
+          "Please ensure that the information you provide is accurate and complete."
+        );
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  const handleButtonClick = () => {
+    axiosWithAuth();
+  };
+
   return (
-    <div className="details">
-      <div className="home_sidebar">
+    <div className="w-screen h-screen overflow-hidden relative min-h-full">
+      <Navbar className="absolute w-full z-10" />
+      <div className="flex h-full">
         <Sidebar />
-      </div>
-
-      <div className="detail_page_main">
-        <Navbar />
-
-        <section className="">
-          <div className="py-4 px-4 mx-auto max-w-screen-md">
-            <h2 className="mb-6 text-blue-500 text-4xl tracking-tight font-extrabold text-center light:text-white">
-              Submit New Support Ticket
-            </h2>
-
-            <form action="#" className="space-y-8">
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 light:text-gray-300"
-                >
-                  Your email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-primary-500 light:focus:border-primary-500 light:shadow-sm-light"
-                  placeholder="Enter Your Email"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="subject"
-                  className="block mb-2 text-sm font-medium text-gray-900 light:text-gray-300"
-                >
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  className="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-primary-500 light:focus:border-primary-500 light:shadow-sm-light"
-                  placeholder="Add subject f your query"
-                  required
-                />
-              </div>
-              <div className="sm:col-span-2">
-                <label
-                  htmlFor="message"
-                  className="block mb-2 text-sm font-medium text-gray-900 light:text-gray-400"
-                >
-                  Your message
-                </label>
-                <textarea
-                  id="message"
-                  rows="6"
-                  className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-primary-500 light:focus:border-primary-500"
-                  placeholder="Let us know briefly how we can help you..."
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="py-3 border-2 hover:text-green-500 hover:border-green-500 text-blue-500 border-blue-500 px-5 text-sm font-medium text-center rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 "
-              >
-                Send message
-              </button>
-
-              <div className=" border rounded-md">
-                <label
-                  htmlFor="imageInput"
-                  className="block text-sm font-medium text-gray-700"
-                ></label>
-                <input
-                  type="file"
-                  id="imageInput"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  className="mt-2 p-2   rounded-md"
-                />
-              </div>
-            </form>
-          </div>
-        </section>
+        <p>Hello</p>
       </div>
     </div>
   );
 };
 
-export default Ticket;
+export default Upload;

@@ -28,15 +28,11 @@ const ReferralForm = () => {
   };
 
   return (
-    <div className="grid grid-cols-[17%,83%]">
-      <div className="">
+    <div className="w-screen h-screen overflow-hidden relative min-h-full">
+      <Navbar className="absolute w-full z-10" />
+      <div className="flex h-full">
         <Sidebar />
-      </div>
-
-      <div className="">
-        <Navbar />
-
-        <div className="p-[10vh]">
+        <div className="p-10">
           <form>
             <div className="flex flex-col gap-y-4">
               <div className="flex flex-col gap-y-5">
@@ -48,7 +44,7 @@ const ReferralForm = () => {
                     Affiliate Details
                   </p>
                 </label>
-                <p>Referral Code</p>
+                <p className="font-bold">Referral Code</p>
                 <div className="relative">
                   <div className="bg-gray-50 border flex justify-between border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 pl-10 ">
                     <p className="text-gray-500">{referralCode}</p>
@@ -60,7 +56,7 @@ const ReferralForm = () => {
                     </button>
                   </div>
                 </div>
-                <p>Referral Link</p>
+                <p className="font-bold">Referral Link</p>
                 <div className="relative">
                   <div className="bg-gray-50 border flex justify-between border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 pl-10 ">
                     <p className="text-gray-500">{referralLink}</p>
@@ -75,11 +71,11 @@ const ReferralForm = () => {
               </div>
             </div>
           </form>
-          <p className="py-5 text-sm">
-            <span className="text-red-500 mr-2">*</span>Share your referral link
-            with your family, friends, and on social media, you will receive a
-            4.5% commission on all purchases from users who register through
-            your referral link.
+
+          <p className="text-blue-500 mt-5">
+            *Share your referral link with your family, friends, and on social
+            media, you will receive a 4.5% commission on all purchases from
+            users who register through your referral link.
           </p>
         </div>
       </div>
