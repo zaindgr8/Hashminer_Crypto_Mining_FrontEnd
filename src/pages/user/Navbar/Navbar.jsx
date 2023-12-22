@@ -15,6 +15,7 @@ import { jwtDecode } from "jwt-decode";
 import { GiRamProfile } from "react-icons/gi";
 import { MdEmail } from "react-icons/md";
 import { MdOutlineSecurity } from "react-icons/md";
+import { FaTicket } from "react-icons/fa6";
 
 function Navbar() {
   const { isSignedIn, user, isLoaded } = useUser();
@@ -73,15 +74,16 @@ function Navbar() {
             <h3 className="text_none">Dashboard</h3>
           </Link>
         </div>
-        <span className="flex gap-x-3 items-center justify-center">
+        <span className="flex gap-x-3 items-center justify-center ">
           <GiRamProfile />
           Greetings and welcome
-          <p className="text-green-700">
-            {user1?.name}
-          </p>
-          <MdOutlineSecurity /> <p className="text-green-700">{user1?.user_id}</p>
-          <p></p> <MdEmail />
-          <p className="text-green-700">{user1?.email}</p>
+          <p className="text-green-700">{user1?.name}</p>
+          <span className="hidden md:block md:flex gap-x-3 items-center justify-center">
+            <MdOutlineSecurity />
+            <p className="text-green-700 ">{user1?.user_id}</p>
+            <MdEmail />
+            <p className="text-green-700 ">{user1?.email}</p>
+          </span>
         </span>
         <div className="item_lists">
           <div className="item gap-x-1 items-center">
@@ -111,6 +113,11 @@ function Navbar() {
                   <Link to="/referral" style={{ textDecoration: "none" }}>
                     <li>
                       <PersonIcon className="icon" /> Referrals
+                    </li>
+                  </Link>
+                  <Link to="/ticket" style={{ textDecoration: "none" }}>
+                    <li>
+                      <FaTicket className="icon" /> Ticket
                     </li>
                   </Link>
                   {/* <li>

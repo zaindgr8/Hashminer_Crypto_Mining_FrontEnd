@@ -102,8 +102,8 @@ function Card() {
 
   return (
     <section className="bg-white light:bg-gray-900">
-      <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
-        <h1 className="font-bold text-red-400 py-3 border-2 border-red-500 rounded-xl mb-3">
+      <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12 flex flex-col justify-center items-center">
+        <h1 className="font-bold text-red-400 py-3  mb-3 ">
           * Invest today and commence earning a 4% profit starting from the
           next day.
           <br /> * Withdrawal of the entire capital is possible after a period
