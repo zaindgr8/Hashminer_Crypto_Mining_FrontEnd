@@ -15,8 +15,7 @@ function Home({ user }) {
         <Sidebar />
       </div>
       <div className="home_main">
-        <Navbar />
-
+        <Navbar user={user} />
         <div className="bg_color" />
         <div className="home_items">
           <Card
@@ -41,22 +40,8 @@ function Home({ user }) {
             description="0"
             button="Withdraw Now"
           />
-
-          {/* <ItemLists type="user" /> */}
-          {/* <ItemLists type="orders" /> */}
-          {/* <ItemLists type="products" />
-            <ItemLists type="balance" /> */}
         </div>
         <Comp user={user} />
-        {/* <div className="chart_sec">
-                    <ProgressBar />
-                    <Chart height={450} title="Revenue" />
-                </div> */}
-
-        {/* <div className="table">
-                    <div className="title">Latest Transactions</div>
-                    <TableList />
-                </div> */}
       </div>
     </div>
   );

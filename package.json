@@ -2,7 +2,7 @@
   "name": "reactconverted",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001",
+  "proxy": "https://hashminer-6a4a925db20f.herokuapp.com",
   "dependencies": {
     "@clerk/clerk-react": "^4.28.2",
     "@emotion/react": "^11.10.4",

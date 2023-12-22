@@ -241,7 +241,7 @@ const Upload = () => {
         </button>
         <p className="mt-5 text-md sm:text-sm">
           <p className="text-blue-500">
-            * Attach Screenshot of Payment Proof & start earning ur profit from
+            * Attach Screenshot of Payment Proof & start earning your profit from
             today.
           </p>
         </p>

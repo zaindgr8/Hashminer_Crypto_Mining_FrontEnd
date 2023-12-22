@@ -202,7 +202,7 @@ function Register() {
                   type="text"
                   className="border-2 border-black rounded-lg w-full p-4"
                   id="exampleFormControlInput22"
-                  placeholder="Refral Code"
+                  placeholder="Referral Code"
                   value={refral_Link}
                   onChange={(e) => setRefral(e.target.value)}
                 />

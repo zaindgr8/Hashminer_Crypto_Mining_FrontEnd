@@ -16,8 +16,6 @@ function Card() {
       const token = localStorage.getItem("apiToken");
       return token;
     };
-
-    // Function to decode the token and extract the user object
     const decodeToken = (token) => {
       try {
         const decoded = jwtDecode(token);
@@ -36,7 +34,6 @@ function Card() {
       const decoded = decodeToken(token);
 
       if (decoded) {
-        // Set the user object in the component state
         setUser((prev) => ({
           ...prev,
           ...decoded,
@@ -106,6 +103,12 @@ function Card() {
   return (
     <section className="bg-white light:bg-gray-900">
       <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
+        <h1 className="font-bold text-red-400 py-3 border-2 border-red-500 rounded-xl mb-3">
+          * Invest today and commence earning a 4% profit starting from the
+          next day.
+          <br /> * Withdrawal of the entire capital is possible after a period
+          of 25 days.
+        </h1>
         <Link
           to="/form"
           className="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-100 rounded-full light:bg-gray-800 light:text-white hover:bg-gray-200 light:hover:bg-gray-700"
@@ -138,13 +141,14 @@ function Card() {
           state-of-the-art machines.
         </p>
         <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-          <button
-            className="text-white bg-blue-500 flex flex-inline justify-center items-center p-3 hover:text-black hover:bg-green-500  rounded-xl"
-            onClick={handleButtonClick}
-          >
-            Get Referral
-          </button>
-
+          <Link>
+            <button
+              className="bg-green-700 text-white inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center rounded-lg border border-gray-300 hover:bg-gray-100 hover:text-black focus:ring-4 focus:ring-gray-100 light:text-white light:border-gray-700 light:hover:bg-gray-700 light:focus:ring-gray-800"
+              onClick={handleButtonClick}
+            >
+              Get Your Referral Code
+            </button>
+          </Link>
           <Link to="/form">
             <button className=" inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-gray-900 rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 light:text-white light:border-gray-700 light:hover:bg-gray-700 light:focus:ring-gray-800">
               <FaHandshakeAngle />

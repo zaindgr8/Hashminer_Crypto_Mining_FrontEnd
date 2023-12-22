@@ -4,37 +4,61 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import PersonIcon from "@mui/icons-material/Person";
-import SearchIcon from "@mui/icons-material/Search";
-import React, { useContext, useState } from "react";
+import React, {useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 // import { ColorContext } from '../../ColorContext/darkContext';
 import { UserButton } from "@clerk/clerk-react";
-import { CiEdit } from "react-icons/ci";
 import { useUser } from "@clerk/clerk-react";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
-
-
-// import sass file
 import "./navbar.scss";
-
-// import images
-import admin from "../Images/admin_pic.jpg";
+import { jwtDecode } from "jwt-decode";
+import { GiRamProfile } from "react-icons/gi";
+import { MdEmail } from "react-icons/md";
+import { MdOutlineSecurity } from "react-icons/md";
 
 function Navbar() {
   const { isSignedIn, user, isLoaded } = useUser();
+  const [user1, setUser1] = useState(null);
+    useEffect(() => {
+      // Function to get the token from local storage
+      const getAuthToken = () => {
+        const token = localStorage.getItem("apiToken");
+        return token;
+      };
+      const decodeToken = (token) => {
+        try {
+          const decoded = jwtDecode(token);
+          return decoded;
+        } catch (error) {
+          console.error("Error decoding token:", error.message);
+          return null;
+        }
+      };
+
+      // Get the token from local storage
+      const token = getAuthToken();
+
+      if (token) {
+        // Decode the token
+        const decoded = decodeToken(token);
+
+        if (decoded) {
+          setUser1((prev) => ({
+            ...prev,
+            ...decoded,
+          }));
+        }
+      }
+    }, []);
+
 
   const [toggle, setToggle] = useState(false);
-  // color state management using react context
-  // const { darkMode, dispatch } = useContext(ColorContext);
 
   const handleToggle = () => {
-    if (!user) {
-      // User is not logged in, redirect or display login message
-      
+    if (!user) {      
     }
     setToggle(!toggle);
   };
-
   return (
     <div className="navbar">
       <div className="navbar_main">
@@ -49,12 +73,16 @@ function Navbar() {
             <h3 className="text_none">Dashboard</h3>
           </Link>
         </div>
-        <div className="search">
-          <input type="text" placeholder="Search.." />
-
-          <SearchIcon className="search_icon" />
-        </div>
-
+        <span className="flex gap-x-3 items-center justify-center">
+          <GiRamProfile />
+          Greetings and welcome
+          <p className="text-green-700">
+            {user1?.name}
+          </p>
+          <MdOutlineSecurity /> <p className="text-green-700">{user1?.user_id}</p>
+          <p></p> <MdEmail />
+          <p className="text-green-700">{user1?.email}</p>
+        </span>
         <div className="item_lists">
           <div className="item gap-x-1 items-center">
             <span className=" font-bold text-xl text-blue-500"></span>
@@ -96,12 +124,14 @@ function Navbar() {
                   </Link>
                   <Link to="/withdraw" style={{ textDecoration: "none" }}>
                     <li>
-                      <CreditCardIcon className="icon" /> Manage Withdraw
+                      <CreditCardIcon className="icon" /> Manage Withdrawals
                     </li>
                   </Link>
-                  <li>
-                    <LogoutIcon className="icon" /> Log Out
-                  </li>
+                  <Link to="/">
+                    <li>
+                      <LogoutIcon className="icon" /> Go to Home
+                    </li>
+                  </Link>
                 </ul>
               </div>
             </div>

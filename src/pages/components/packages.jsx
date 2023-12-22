@@ -14,32 +14,32 @@ import axios from "axios";
 const people = [
   {
     id: 1,
-    name: "Genesis Hashwave- 100 USD",
+    name: "Genesis Hashwave- 100 USDT",
     avatar: mining3,
   },
   {
     id: 2,
-    name: "Xenon Supercharge- 1000 USD",
+    name: "Xenon Supercharge- 1000 USDT",
     avatar: mining2b,
   },
   {
     id: 3,
-    name: "Nebula Odyssey- 2000 USD",
+    name: "Nebula Odyssey- 2000 USDT",
     avatar: mining2a,
   },
   {
     id: 4,
-    name: "Quantum Hash- 5000 USD",
+    name: "Quantum Hash- 5000 USDT",
     avatar: mining2c,
   },
   {
     id: 5,
-    name: "Cyber Mine X- 8000 USD",
+    name: "Cyber Mine X- 8000 USDT",
     avatar: mining1,
   },
   {
     id: 6,
-    name: "Stellar Hash- 10000 USD",
+    name: "Stellar Hash- 10000 USDT",
     avatar: mining2,
   },
 ];
@@ -52,21 +52,16 @@ export default function Example() {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    // Inside the useEffect, access the local storage
     const storedApiToken = localStorage.getItem("apiToken");
 
-    // Check if the token exists
     if (storedApiToken) {
-      // Use the token in your API requests
       console.log("API Token:", storedApiToken);
     } else {
       console.log("No API token found in local storage");
     }
 
-    // You can add dependencies to the array below if needed
-  }, []); // The empty dependency array ensures that this effect runs once when the component mounts
 
-  // Rest of your component logic
+  }, []);
 
   const apiEndpoint =
     "https://hashminer-6a4a925db20f.herokuapp.com/packages/request_package";
@@ -112,7 +107,7 @@ export default function Example() {
             <Listbox.Label className="block text-sm font-medium leading-6 text-gray-900">
               Choose Your Package
             </Listbox.Label>
-            <div className="relative mt-2">
+            <div className="w-[41vh] flex">
               <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
                 <span className="flex items-center">
                   <img
@@ -122,7 +117,7 @@ export default function Example() {
                   />
                   <span className="ml-3 block truncate">{selected.name}</span>
                 </span>
-                <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2"></span>
+                <span className="pointer-events-none w-[41vh] absolute inset-y-0 right-0 ml-3 flex items-center pr-2"></span>
               </Listbox.Button>
               <Transition
                 show={open}
@@ -131,7 +126,7 @@ export default function Example() {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               >
-                <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-[41vh] flex flex-col overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                   {people.map((person) => (
                     <Listbox.Option
                       key={person.id}

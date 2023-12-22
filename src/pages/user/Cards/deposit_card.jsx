@@ -111,7 +111,6 @@ const Card = ({ title, description, button, href }) => {
           </svg>
         </a>
       </div>
-      {console.log("User Info Bro", user)}
     </div>
   );
 };
