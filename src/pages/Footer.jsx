@@ -87,13 +87,7 @@ function Footer() {
           <h3 className="copy-and-social__copy">
             ©2023 Hash Miner. All rights reserved
           </h3>
-          <div className="social-icons">
-            <i className="fab fa-facebook-f"></i>
-            <i className="fab fa-instagram"></i>
-            <i className="fab fa-youtube"></i>
-            <i className="fab fa-twitter"></i>
-            <i className="fab fa-linkedin-in"></i>
-          </div>
+        
         </div>
       </div>
     </footer>

@@ -4,6 +4,10 @@ import { useEffect } from "react";
 
 function SubBox() {
 
+  const foo = () => {
+    window.open("mailto:hashminers@proton.me");
+  };
+
 useEffect(() => {
   const sr = ScrollReveal();
   sr.reveal(".headline6", {
@@ -22,14 +26,12 @@ useEffect(() => {
         </p>
       </div>
       <div className="cta-section__subscribe">
-        <input
-          type="email"
+        <button
           className="cta-section__subscribe__input"
-          placeholder="Enter your email"
         />
-        <a href="#" className="cta-section__subscribe__btn">
-          Subscribe
-        </a>
+        <button onClick={foo} className="cta-section__subscribe__btn">
+          Request Access
+        </button>
       </div>
     </aside>
   );

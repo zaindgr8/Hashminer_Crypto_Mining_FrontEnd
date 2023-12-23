@@ -20,7 +20,7 @@ function Home({ user }) {
               user={user}
               title="Available Balance"
               description="5.00"
-              button="Deposit Now"
+              button="Invest Now"
               className="w-full md:w-1/2 lg:w-1/4"
             />
             <Card1

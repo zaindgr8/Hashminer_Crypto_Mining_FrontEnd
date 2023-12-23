@@ -50,54 +50,60 @@ function SecondSection() {
       <div className="cryptocurrencies-info-cards headline4">
         <Miningpackages
           title=" Genesis Hashwave "
-          investment="100 USD"
-          returns="4 USD"
+          investment="100 USDT"
+          returns="4 USDT"
           src={mining3}
           imgSize={150}
           package1="explorer"
+          bonus="4 USDT"
         />
 
         <Miningpackages
           title=" Xenon Supercharge "
-          investment="1000 USD"
-          returns="20 USD"
+          investment="1000 USDT"
+          returns="40 USDT"
           src={mining2b}
           imgSize={270}
           package1="starter"
+          bonus="40 USDT"
         />
 
         <Miningpackages
           title=" Nebula Odyssey "
-          investment="2000 USD"
-          returns="100 USD"
+          investment="2000 USDT"
+          returns="80 USDT"
           src={mining2a}
           imgSize={230}
           package1="bronze"
+          bonus="80 USDT"
         />
 
         <Miningpackages
           title=" Quantum Hash"
-          investment="5000 USD"
-          returns="200 USD"
+          investment="5000 USDT"
+          returns="200 USDT"
           src={mining2c}
           imgSize={290}
           package1="silver"
+          bonus="200 USDT"
         />
         <Miningpackages
           title="Cyber Mine X"
-          investment="8000 USD"
-          returns="320 USD"
+          investment="8000 USDT"
+          returns="320 USDT"
           src={mining1}
           imgSize={220}
           package1="gold"
+          bonus="320 USDT"
         />
         <Miningpackages
           title="Stellar Hash"
-          investment="10000 USD"
-          returns="400 USD"
+          investment="10000 USDT"
+          returns="400 USDT"
           src={mining2}
           imgSize={290}
           package1="platinum"
+          bonus="400 USDT"
         />
       </div>
     </section>

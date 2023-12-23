@@ -71,7 +71,7 @@ function Navbar() {
           )}
 
           <Link to="/user" style={{ textDecoration: "none" }}>
-            <h3 className="text_none">Dashboard</h3>
+            <h3 className="text_none">Hashminer</h3>
           </Link>
         </div>
         <span className="flex gap-x-3 items-center justify-center ">

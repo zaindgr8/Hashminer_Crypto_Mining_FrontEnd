@@ -1,17 +1,13 @@
 import React from 'react'
-import feature1 from "../assets/features-section-assets/features-section-invest.svg";
-import feature2 from "../assets/features-section-assets/features-section-statistic.svg";
-import feature3 from "../assets/features-section-assets/features-section-table.svg";
 import ScrollReveal from "scrollreveal";
 import { useEffect } from "react";
 import {CheckCircle} from "lucide-react"
-import {MousePointerClick} from "lucide-react"
 import reg1 from "../assets/reg3.svg"
 import reg2 from "../assets/reg2.svg";
 import sec from "../assets/sec.svg";
 import daily from "../assets/daily.svg";
 import bonus from "../assets/bonus.svg";
-import Carousel from './components/carousal';
+import { Link } from 'react-router-dom';
 
 
 
@@ -64,9 +60,9 @@ useEffect(() => {
             Get started with our cloud mining service in just one minute. Our
             user-friendly sign-up procedure ensures you're mining in no time.
           </p>
-          <a href="#" className="invest-smart-article__content__btn">
+          <Link to="/register" className="invest-smart-article__content__btn">
             Start Mining
-          </a>
+          </Link>
         </div>
 
         <img
@@ -89,9 +85,9 @@ useEffect(() => {
             Explore and select from a range of plans to find the one that
             perfectly matches your mining goals and preferences.
           </p>
-          <a href="#" className="detailed-stats-article__content__btn">
+        <Link to="/register"  className="detailed-stats-article__content__btn">
             Start Mining
-          </a>
+          </Link>
         </div>
 
         <img
@@ -112,9 +108,9 @@ useEffect(() => {
             Deposit funds securely and complete your chosen package payment with
             ease. We prioritize the safety and convenience of your transactions.
           </p>
-          <a href="#" className="grow-profit-article__content__btn">
+         <Link to="/register" className="grow-profit-article__content__btn">
             Start Mining
-          </a>
+          </Link>
         </div>
 
         <img
@@ -135,9 +131,9 @@ useEffect(() => {
             Receive your earnings every day, providing you with a steady and
             reliable stream of income from your cloud mining endeavors.
           </p>
-          <a href="#" className="detailed-stats-article__content__btn">
+         <Link to="/register"  className="detailed-stats-article__content__btn">
             Start Mining
-          </a>
+          </Link>
         </div>
 
         <img
@@ -160,9 +156,9 @@ useEffect(() => {
             and enjoy an instant bonus of $20 for every successful 1st referral.
             Share the wealth and maximize your profits.
           </p>
-          <a href="#" className="grow-profit-article__content__btn">
+          <Link to="/register" className="grow-profit-article__content__btn">
             Start Mining
-          </a>
+          </Link>
         </div>
 
         <img

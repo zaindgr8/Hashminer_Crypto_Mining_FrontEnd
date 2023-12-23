@@ -3,7 +3,7 @@ import mining3 from "../../assets/mining6.png";
 import { CheckCircle2 } from "lucide-react";
 import { Link } from 'react-router-dom';
 
-const Miningpackages = ({title, investment, returns, src, imgSize, package1}) => {
+const Miningpackages = ({title,bonus, investment, returns, src, imgSize, package1}) => {
   return (
     <div className="info-card">
       <img src={src} width={imgSize} alt="" className="info-card__icon" />
@@ -48,7 +48,7 @@ const Miningpackages = ({title, investment, returns, src, imgSize, package1}) =>
           <p className="hover:text-white lg:text-2xl md:text-xl sm:text-md text-gray-700">
             Joining Bonus
           </p>
-          <p className="px-5 lg:text-xl md:text-md sm:text-sm">40 USD</p>
+          <p className="px-5 lg:text-xl md:text-md sm:text-sm">{bonus}</p>
         </div>
         <Link to="/register" className="info-card__btn">
           Start mining <i className="fas fa-angle-right"></i>
