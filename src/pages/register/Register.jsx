@@ -48,13 +48,16 @@ function Register() {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/refral", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("apiToken")}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://hashminer-heroku-f3171d24210a.herokuapp.com/refral",
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("apiToken")}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!response.ok) {
         console.error("API request failed:", response.statusText);
@@ -82,12 +85,15 @@ function Register() {
 
   const registerUser = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/auth/user", {
-        name,
-        email,
-        password,
-        refral_Link,
-      });
+      const response = await axios.post(
+        "https://hashminer-heroku-f3171d24210a.herokuapp.com/auth/user",
+        {
+          name,
+          email,
+          password,
+          refral_Link,
+        }
+      );
 
       const responseData = response.data;
 
@@ -106,10 +112,13 @@ function Register() {
 
   const loginUser = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/auth/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://hashminer-heroku-f3171d24210a.herokuapp.com/auth/login",
+        {
+          email,
+          password,
+        }
+      );
 
       const responseData = response.data;
 

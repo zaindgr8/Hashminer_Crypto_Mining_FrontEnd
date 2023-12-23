@@ -97,7 +97,7 @@ const Upload = () => {
       formData.append("email", email);
 
       const response = await axios.post(
-        "http://localhost:3000/packages/request_package",
+        "https://hashminer-heroku-f3171d24210a.herokuapp.com/packages/request_package",
         formData,
         {
           headers: {
@@ -106,15 +106,18 @@ const Upload = () => {
           },
         }
       );
-      const response2 = await fetch("http://localhost:3000/task", {
-        method: "POST",
-        body: formData,
-        headers: {
-          Authorization: token,
-          // "Content-Type": "multipart/form-data",
-          Accept: "application/json",
-        },
-      });
+      const response2 = await fetch(
+        "https://hashminer-heroku-f3171d24210a.herokuapp.com/task",
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Authorization: token,
+            // "Content-Type": "multipart/form-data",
+            Accept: "application/json",
+          },
+        }
+      );
 
       if (response2.ok) {
         console.log("Task added successfully");
@@ -143,15 +146,18 @@ const Upload = () => {
         console.error("No API token found in local storage");
         return;
       }
-      const response = await fetch("http://localhost:3000/task", {
-        method: "POST",
-        body: formData,
-        headers: {
-          Authorization: token,
-          // "Content-Type": "multipart/form-data",
-          Accept: "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://hashminer-heroku-f3171d24210a.herokuapp.com/task",
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Authorization: token,
+            // "Content-Type": "multipart/form-data",
+            Accept: "application/json",
+          },
+        }
+      );
 
       if (response.ok) {
         alert(

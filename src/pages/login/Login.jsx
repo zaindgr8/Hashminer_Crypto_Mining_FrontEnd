@@ -25,10 +25,13 @@ function Login() {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/auth/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://hashminer-heroku-f3171d24210a.herokuapp.com/auth/login",
+        {
+          email,
+          password,
+        }
+      );
 
       // Access the response data
       const responseData = response.data;

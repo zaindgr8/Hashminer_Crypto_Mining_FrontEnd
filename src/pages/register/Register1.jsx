@@ -27,10 +27,13 @@ function Register() {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/auth/user", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://hashminer-heroku-f3171d24210a.herokuapp.com/auth/user",
+        {
+          email,
+          password,
+        }
+      );
 
       // Access the response data
       const responseData = response.data;

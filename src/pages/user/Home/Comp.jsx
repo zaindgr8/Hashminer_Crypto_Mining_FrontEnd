@@ -6,6 +6,7 @@ import investor2 from "./investor2.png";
 import investor3 from "./investor3.png";
 import investor4 from "./investor4.png";
 import { jwtDecode } from "jwt-decode";
+import { GoAlert } from "react-icons/go";
 
 function Card() {
   const [user, setUser] = useState(null);
@@ -74,13 +75,16 @@ function Card() {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/refral", {
-        method: "GET",
-        headers: {
-          Authorization: token,
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://hashminer-heroku-f3171d24210a.herokuapp.com/refral",
+        {
+          method: "GET",
+          headers: {
+            Authorization: token,
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!response.ok) {
         console.error("API request failed:", response.statusText);
@@ -137,10 +141,14 @@ function Card() {
           Hashminer employs cutting-edge mining technology featuring
           state-of-the-art machines.
         </p>
+        <p className="text-green-700 mb-4 underline flex items-center gap-x-3">
+          <GoAlert />
+          <p>Receive $20 for every registration using your referral code!</p>
+        </p>
         <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-          <Link>
+          <Link className="flex items-center gap-x-3">
             <button
-              className="bg-green-700 text-white inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center rounded-lg border border-gray-300 hover:bg-gray-100 hover:text-black focus:ring-4 focus:ring-gray-100 light:text-white light:border-gray-700 light:hover:bg-gray-700 light:focus:ring-gray-800"
+              className="bg-green-700 text-white inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center rounded-lg border border-gray-300 hover:bg-gray-100 hover:text-black focus:ring-4 focus:ring-gray-100 "
               onClick={handleButtonClick}
             >
               Get Your Referral Code

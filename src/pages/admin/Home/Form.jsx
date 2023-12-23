@@ -17,7 +17,7 @@ function Form() {
     try {
       const storedApiToken = localStorage.getItem("apiToken");
       const response = await axios.post(
-        "http://localhost:3000/packages/assign_package",
+        "https://hashminer-heroku-f3171d24210a.herokuapp.com/packages/assign_package",
         {
           email,
           price,
@@ -47,7 +47,8 @@ function Form() {
       setError("Error logging in. Please try again.");
     }
   };
-  const apiEndpoint = "http://localhost:3000/packages/assign_package";
+  const apiEndpoint =
+    "https://hashminer-heroku-f3171d24210a.herokuapp.com/packages/assign_package";
 
   // Function to get API token from local storage
   const getApiToken = () => {
@@ -114,7 +115,6 @@ function Form() {
           required
         />
       </div>
-      
 
       <div className="flex items-start mb-5"></div>
       <div className="flex items-start mb-5">

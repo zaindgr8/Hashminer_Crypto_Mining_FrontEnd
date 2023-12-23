@@ -33,11 +33,11 @@ function Sidebar() {
               <FaTicket className="mr-3 text-blue-500" /> Ticket
             </li>
           </Link>
-          <Link to="/referral" style={{ textDecoration: "none" }}>
+          {/* <Link to="/referral" style={{ textDecoration: "none" }}>
             <li className="flex items-center">
               <BsPeopleFill className="mr-3 text-blue-500" /> Referral
             </li>
-          </Link>
+          </Link> */}
           <p className="uppercase text-gray-500 my-2 text-lg md:text-2xl">
             PAYMENTS
           </p>

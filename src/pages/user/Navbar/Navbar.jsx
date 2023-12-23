@@ -110,11 +110,11 @@ function Navbar() {
                   </Link>
 
                   <p className="spann">lists</p>
-                  <Link to="/referral" style={{ textDecoration: "none" }}>
+                  {/* <Link to="/referral" style={{ textDecoration: "none" }}>
                     <li>
                       <PersonIcon className="icon" /> Referrals
                     </li>
-                  </Link>
+                  </Link> */}
                   <Link to="/ticket" style={{ textDecoration: "none" }}>
                     <li>
                       <FaTicket className="icon" /> Ticket

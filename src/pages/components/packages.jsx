@@ -61,7 +61,8 @@ export default function Example() {
     }
   }, []);
 
-  const apiEndpoint = "http://localhost:3000/packages/request_package";
+  const apiEndpoint =
+    "https://hashminer-heroku-f3171d24210a.herokuapp.com/packages/request_package";
 
   // Function to get API token from local storage
   const getApiToken = () => {

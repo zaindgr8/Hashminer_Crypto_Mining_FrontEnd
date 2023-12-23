@@ -27,7 +27,7 @@ function Login() {
 
   // const handleSubmit = async () => {
   //   try {
-  //     const response = await axios.post("http://localhost:3000/auth/login", {
+  //     const response = await axios.post("https://hashminer-heroku-f3171d24210a.herokuapp.com/auth/login", {
   //       email,
   //       password,
   //     });
@@ -42,12 +42,15 @@ function Login() {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/auth/user", {
-        email,
-        password,
-        name,
-        username,
-      });
+      const response = await axios.post(
+        "https://hashminer-heroku-f3171d24210a.herokuapp.com/auth/user",
+        {
+          email,
+          password,
+          name,
+          username,
+        }
+      );
 
       // Access the response data
       const responseData = response.data;

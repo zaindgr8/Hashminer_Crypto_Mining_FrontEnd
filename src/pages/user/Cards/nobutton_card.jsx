@@ -33,13 +33,16 @@ const Card = ({ title, description, button, href }) => {
 
       // Make an API call with the decoded._id in the endpoint
       axios
-        .get(`http://localhost:3000/auth/refral_balabce`, {
-          headers: {
-            Authorization: token,
-            "Content-Type": "application/json", // Adjust content type as needed
-          },
-          maxRedirects: 0,
-        })
+        .get(
+          `https://hashminer-heroku-f3171d24210a.herokuapp.com/auth/refral_balabce`,
+          {
+            headers: {
+              Authorization: token,
+              "Content-Type": "application/json", // Adjust content type as needed
+            },
+            maxRedirects: 0,
+          }
+        )
         .then((response) => {
           // Check if the response has the expected key "userRefralBal"
           if (response.data && response.data.hasOwnProperty("userRefralBal")) {
