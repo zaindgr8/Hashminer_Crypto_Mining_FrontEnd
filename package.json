@@ -2,7 +2,7 @@
   "name": "reactconverted",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://hashminer-heroku-f3171d24210a.herokuapp.com/",
+  "proxy": "http://localhost:3000/",
   "dependencies": {
     "@clerk/clerk-react": "^4.28.2",
     "@cloudinary/react": "^1.11.2",

@@ -18,7 +18,6 @@ import axios from "axios";
 
 // Dynamicaly change the data for different pages(replaceable)
 
-
 function App() {
   const location = useLocation();
   const [cookies, setCookie] = useCookies(["token"]);
@@ -50,15 +49,12 @@ function App() {
 
       // Make an API call with the token in the headers
       axios
-        .get(
-          "https://hashminer-heroku-f3171d24210a.herokuapp.com/packages/user_packages",
-          {
-            headers: {
-              Authorization: token,
-              "Content-Type": "application/json", // Adjust content type as needed
-            },
-          }
-        )
+        .get("http://localhost:3000/packages/user_packages", {
+          headers: {
+            Authorization: token,
+            "Content-Type": "application/json", // Adjust content type as needed
+          },
+        })
         .then((response) => {
           // Handle the response from the server
           console.log("API Response:", response.data);

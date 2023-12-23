@@ -1,6 +1,7 @@
 import { MdPeople } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import { MdOutlineAttachMoney } from "react-icons/md";
 import axios from "axios";
 
 const Card = ({ title, description, button, href }) => {
@@ -32,16 +33,13 @@ const Card = ({ title, description, button, href }) => {
 
       // Make an API call with the decoded._id in the endpoint
       axios
-        .get(
-          `https://hashminer-heroku-f3171d24210a.herokuapp.com/auth/refral_balabce/${decoded.user_id}`,
-          {
-            headers: {
-              Authorization: token,
-              // "Content-Type": "application/json", // Adjust content type as needed
-            },
-            maxRedirects: 0,
-          }
-        )
+        .get(`http://localhost:3000/auth/refral_balabce`, {
+          headers: {
+            Authorization: token,
+            "Content-Type": "application/json", // Adjust content type as needed
+          },
+          maxRedirects: 0,
+        })
         .then((response) => {
           // Check if the response has the expected key "userRefralBal"
           if (response.data && response.data.hasOwnProperty("userRefralBal")) {
@@ -67,7 +65,7 @@ const Card = ({ title, description, button, href }) => {
       </a>
       <p className="flex items-center gap-x-2 mb-3 font-normal text-gray-700 light:text-gray-400">
         <MdPeople />
-        {description}
+        {userRefralBal} <MdOutlineAttachMoney />
       </p>
       <div className="flex gap-y-2"></div>
     </div>

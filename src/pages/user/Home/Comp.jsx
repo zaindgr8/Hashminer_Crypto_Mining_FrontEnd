@@ -74,16 +74,13 @@ function Card() {
     }
 
     try {
-      const response = await fetch(
-        "https://hashminer-heroku-f3171d24210a.herokuapp.com/refral",
-        {
-          method: "GET",
-          headers: {
-            Authorization: token,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch("http://localhost:3000/refral", {
+        method: "GET",
+        headers: {
+          Authorization: token,
+          "Content-Type": "application/json",
+        },
+      });
 
       if (!response.ok) {
         console.error("API request failed:", response.statusText);

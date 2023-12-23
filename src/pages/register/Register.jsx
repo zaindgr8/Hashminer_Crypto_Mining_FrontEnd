@@ -18,7 +18,6 @@ function Register() {
   const [refral_Link, setRefral] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
-
   const getAuthToken = () => {
     const token = localStorage.getItem("apiToken");
     return token;
@@ -49,16 +48,13 @@ function Register() {
     }
 
     try {
-      const response = await fetch(
-        "https://hashminer-heroku-f3171d24210a.herokuapp.com/refral",
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("apiToken")}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch("http://localhost:3000/refral", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("apiToken")}`,
+          "Content-Type": "application/json",
+        },
+      });
 
       if (!response.ok) {
         console.error("API request failed:", response.statusText);
@@ -86,15 +82,12 @@ function Register() {
 
   const registerUser = async () => {
     try {
-      const response = await axios.post(
-        "https://hashminer-heroku-f3171d24210a.herokuapp.com/auth/user",
-        {
-          name,
-          email,
-          password,
-          refral_Link,
-        }
-      );
+      const response = await axios.post("http://localhost:3000/auth/user", {
+        name,
+        email,
+        password,
+        refral_Link,
+      });
 
       const responseData = response.data;
 
@@ -111,33 +104,29 @@ function Register() {
     }
   };
 
- const loginUser = async () => {
-   try {
-     const response = await axios.post(
-       "https://hashminer-heroku-f3171d24210a.herokuapp.com/auth/login",
-       {
-         email,
-         password,
-       }
-     );
+  const loginUser = async () => {
+    try {
+      const response = await axios.post("http://localhost:3000/auth/login", {
+        email,
+        password,
+      });
 
-     const responseData = response.data;
+      const responseData = response.data;
 
-     if (responseData.token && responseData.token !== "invalid input") {
-       const decodedToken = jwtDecode(responseData.token);
-       localStorage.setItem("apiToken", responseData.token);
-       console.log("Decoded Token:", decodedToken);
-       navigate("/user", { state: { user: decodedToken } });
-       console.log("Login successful");
-     } else {
-       console.log("Login failed");
-       alert("Invalid input!");
-     }
-   } catch (error) {
-     console.error("Error logging in:", error.message);
-   }
- };
-
+      if (responseData.token && responseData.token !== "invalid input") {
+        const decodedToken = jwtDecode(responseData.token);
+        localStorage.setItem("apiToken", responseData.token);
+        console.log("Decoded Token:", decodedToken);
+        navigate("/user", { state: { user: decodedToken } });
+        console.log("Login successful");
+      } else {
+        console.log("Login failed");
+        alert("Invalid input!");
+      }
+    } catch (error) {
+      console.error("Error logging in:", error.message);
+    }
+  };
 
   const handleSubmit = async () => {
     const registrationSuccessful = await registerUser();
@@ -246,8 +235,13 @@ function Register() {
                     href="#!"
                     className="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
                   >
-                    <Link to="/login" className="text-blue-500 ml-5  hover:text-black">
-                      <span className="text-blue-500 font-bold px-2">Login</span>
+                    <Link
+                      to="/login"
+                      className="text-blue-500 ml-5  hover:text-black"
+                    >
+                      <span className="text-blue-500 font-bold px-2">
+                        Login
+                      </span>
                     </Link>
                   </a>
                 </p>

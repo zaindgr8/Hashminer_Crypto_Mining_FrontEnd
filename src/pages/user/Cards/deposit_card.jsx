@@ -2,6 +2,7 @@ import { MdOutlineAttachMoney } from "react-icons/md";
 import { GiMoneyStack } from "react-icons/gi";
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import { GiReceiveMoney } from "react-icons/gi";
 import axios from "axios";
 
 const Card = ({ title, description, button, href }) => {
@@ -34,15 +35,12 @@ const Card = ({ title, description, button, href }) => {
 
       // Make an API call with the token in the headers
       axios
-        .get(
-          "https://hashminer-heroku-f3171d24210a.herokuapp.com/packages/user_packages",
-          {
-            headers: {
-              Authorization: token,
-              "Content-Type": "application/json", // Adjust content type as needed
-            },
-          }
-        )
+        .get("http://localhost:3000/packages/user_packages", {
+          headers: {
+            Authorization: token,
+            "Content-Type": "application/json", // Adjust content type as needed
+          },
+        })
         .then((response) => {
           if (response.data) {
             const totalPriceAmount = response.data.reduce((sum, drive) => {
@@ -82,7 +80,7 @@ const Card = ({ title, description, button, href }) => {
         <MdOutlineAttachMoney />
       </p>
       <p className="mb-3 flex items-center gap-x-2 font-normal text-gray-700 light:text-gray-400">
-        <GiMoneyStack />
+        <GiReceiveMoney />
         Daily Bonus:
         <span className="text-green-700">
           {amount !== null ? amount * 0.04 : 0}
