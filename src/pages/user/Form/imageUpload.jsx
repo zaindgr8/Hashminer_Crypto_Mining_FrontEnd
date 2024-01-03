@@ -216,6 +216,7 @@ const Upload = () => {
         </div>
         {isCopied && <p className="text-blue-500 font-bold">Copied!</p>}
         <img src={Qr} className="w-[15vh] mt-5" />
+        <p className="mt-3 text-blue-500">Please ensure you deposit in TRC20 USDT*</p>
         <div>
           <div className="relative mt-5">
             <input
