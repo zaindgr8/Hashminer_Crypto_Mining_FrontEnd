@@ -10,6 +10,7 @@ import mining2c from "../../assets/mining2c.png";
 import Upload from "../user/Form/imageUpload";
 import { useEffect } from "react";
 import axios from "axios";
+import Miningpackage from "./miningpackages1"
 
 const people = [
   {
@@ -100,7 +101,7 @@ export default function Example() {
   return (
     <div>
       <div className="max-w-full flex flex-col">
-        <Listbox value={selected} onChange={setSelected}>
+        {/* <Listbox value={selected} onChange={setSelected}>
           {({ open }) => (
             <>
               <Listbox.Label className="block text-sm font-bold leading-6 text-gray-900">
@@ -174,8 +175,65 @@ export default function Example() {
               </div>
             </>
           )}
-        </Listbox>
+        </Listbox> */}
+        {/* <div className="grid grid-cols-3 gap-4">
+          <Miningpackage
+            title=" Genesis Hashwave "
+            investment="100 USDT"
+            returns="4 USDT"
+            src={mining3}
+            imgSize={50}
+            package1="explorer"
+            bonus="4 USDT"
+          />
+          <Miningpackage
+            title=" Genesis Hashwave "
+            investment="100 USDT"
+            returns="4 USDT"
+            src={mining3}
+            imgSize={50}
+            package1="explorer"
+            bonus="4 USDT"
+          />
+          <Miningpackage
+            title=" Genesis Hashwave "
+            investment="100 USDT"
+            returns="4 USDT"
+            src={mining3}
+            imgSize={50}
+            package1="explorer"
+            bonus="4 USDT"
+          />
+          <Miningpackage
+            title=" Genesis Hashwave "
+            investment="100 USDT"
+            returns="4 USDT"
+            src={mining3}
+            imgSize={50}
+            package1="explorer"
+            bonus="4 USDT"
+          />
+          <Miningpackage
+            title=" Genesis Hashwave "
+            investment="100 USDT"
+            returns="4 USDT"
+            src={mining3}
+            imgSize={50}
+            package1="explorer"
+            bonus="4 USDT"
+          />
+          <Miningpackage
+            title=" Genesis Hashwave "
+            investment="100 USDT"
+            returns="4 USDT"
+            src={mining3}
+            imgSize={50}
+            package1="explorer"
+            bonus="4 USDT"
+          />
+        </div> */}
       </div>
+      <Miningpackage />
       <div className="gap-x-3 grid-cols-3 grid gap-y-3 mt-3">
         <Upload />
       </div>

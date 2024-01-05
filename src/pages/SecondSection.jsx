@@ -79,7 +79,7 @@ function SecondSection() {
         />
 
         <Miningpackages
-          title=" Quantum Hash"
+          title="Quantum Hash"
           investment="5000 USDT"
           returns="200 USDT"
           src={mining2c}
