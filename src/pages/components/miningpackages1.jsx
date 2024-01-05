@@ -8,16 +8,16 @@ import mining2c from "../../assets/mining2c.png";
 
 const Miningpackage = () => {
   return (
-    <div className="w-full max-w-xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+    <div className="w-full max-w-xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 light:bg-gray-800 light:border-gray-700">
       <div className="flex items-center justify-between mb-4">
-        <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
+        <h5 className="text-xl font-bold leading-none text-gray-900 light:text-white">
           Make payment for the package below:
         </h5>
       </div>
       <div className="flex gap-x-12">
         <ul
           role="list"
-          className="divide-y divide-gray-200 dark:divide-gray-700"
+          className="divide-y divide-gray-200 light:divide-gray-700"
         >
           <li className="py-3 sm:py-4">
             <div className="flex items-center">
@@ -29,14 +29,14 @@ const Miningpackage = () => {
                 />
               </div>
               <div className="flex-1 min-w-5 ms-4">
-                <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                <p className="text-sm font-medium text-gray-900 truncate light:text-white">
                   Genesis Hashwave
                 </p>
-                <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                <p className="text-sm text-gray-500 truncate light:text-gray-400">
                   Daily Withdraw: 0.8 USDT
                 </p>
               </div>
-              <div className="ms-4 inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+              <div className="ms-4 inline-flex items-center text-base font-semibold text-gray-900 light:text-white">
                 20$
               </div>
             </div>
@@ -51,14 +51,14 @@ const Miningpackage = () => {
                 />
               </div>
               <div className="flex-1 min-w-3 ms-4">
-                <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                <p className="text-sm font-medium text-gray-900 truncate light:text-white">
                   Xenon Supercharge
                 </p>
-                <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                <p className="text-sm text-gray-500 truncate light:text-gray-400">
                   Daily Withdraw: 2 USDT
                 </p>
               </div>
-              <div className="ms-4 inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+              <div className="ms-4 inline-flex items-center text-base font-semibold text-gray-900 light:text-white">
                 $50
               </div>
             </div>
@@ -73,14 +73,14 @@ const Miningpackage = () => {
                 />
               </div>
               <div className="flex-1 min-w-3 ms-4">
-                <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                <p className="text-sm font-medium text-gray-900 truncate light:text-white">
                   Nebula Odyssey
                 </p>
-                <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                <p className="text-sm text-gray-500 truncate light:text-gray-400">
                   Daily Withdraw: 4 USDT
                 </p>
               </div>
-              <div className="ml-4 inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+              <div className="ml-4 inline-flex items-center text-base font-semibold text-gray-900 light:text-white">
                 $100
               </div>
             </div>
@@ -88,7 +88,7 @@ const Miningpackage = () => {
         </ul>
         <ul
           role="list"
-          className="divide-y divide-gray-200 dark:divide-gray-700"
+          className="divide-y divide-gray-200 light:divide-gray-700"
         >
           <li className="py-3 sm:py-4">
             <div className="flex items-center">
@@ -100,14 +100,14 @@ const Miningpackage = () => {
                 />
               </div>
               <div className="flex-1 min-w-3 ms-4">
-                <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                <p className="text-sm font-medium text-gray-900 truncate light:text-white">
                   Quantum Hash
                 </p>
-                <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                <p className="text-sm text-gray-500 truncate light:text-gray-400">
                   Daily Withdraw: 8 USDT
                 </p>
               </div>
-              <div className="ms-4 inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+              <div className="ms-4 inline-flex items-center text-base font-semibold text-gray-900 light:text-white">
                 $200
               </div>
             </div>
@@ -122,14 +122,14 @@ const Miningpackage = () => {
                 />
               </div>
               <div className="flex-1 min-w-3 ms-4">
-                <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                <p className="text-sm font-medium text-gray-900 truncate light:text-white">
                   Cyber Mine X
                 </p>
-                <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                <p className="text-sm text-gray-500 truncate light:text-gray-400">
                   Daily Withdraw: 20 USDT
                 </p>
               </div>
-              <div className="ms-3 inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+              <div className="ms-3 inline-flex items-center text-base font-semibold text-gray-900 light:text-white">
                 $500
               </div>
             </div>
@@ -144,14 +144,14 @@ const Miningpackage = () => {
                 />
               </div>
               <div className="flex-1 min-w-3 ms-4">
-                <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                <p className="text-sm font-medium text-gray-900 truncate light:text-white">
                   Stellar Hash
                 </p>
-                <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                <p className="text-sm text-gray-500 truncate light:text-gray-400">
                   Daily Withdraw: 40 USDT
                 </p>
               </div>
-              <div className="ms-3 inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+              <div className="ms-3 inline-flex items-center text-base font-semibold text-gray-900 light:text-white">
                 $1000
               </div>
             </div>
