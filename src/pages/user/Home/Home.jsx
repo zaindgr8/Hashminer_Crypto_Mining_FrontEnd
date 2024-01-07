@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import Card from "../Cards/deposit_card";
 import Card1 from "../Cards/withdraw_card";
 import Card2 from "../Cards/nobutton_card";
 import Card4 from "../Cards/package_card";
+import { SiMinutemailer } from "react-icons/si";
 import Comp from "./Comp";
 
 function Home({ user }) {
+    const [showChatButton, setShowChatButton] = useState(false);
+
+    useEffect(() => {
+      setShowChatButton(true);
+    }, []);
+
+    const handleChatButtonClick = () => {
+      window.location.href =
+        "mailto:hashminers@proton.me?subject=Inquiry&body=Drop%20us%20a%20message";
+    };
   
   return (
     <div className="w-screen h-screen overflow-hidden relative min-h-full">
@@ -45,6 +56,15 @@ function Home({ user }) {
           </div>
 
           <Comp user={user} />
+          {showChatButton && (
+            <div
+              className="flex items-center gap-x-3 fixed bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded cursor-pointer"
+              onClick={handleChatButtonClick}
+            >
+              <SiMinutemailer />
+              <p>Inquiry? Get Instant Help</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

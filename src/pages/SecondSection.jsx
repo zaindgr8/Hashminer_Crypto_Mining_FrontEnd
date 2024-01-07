@@ -50,60 +50,60 @@ function SecondSection() {
       <div className="cryptocurrencies-info-cards headline4">
         <Miningpackages
           title=" Genesis Hashwave "
-          investment="100 USDT"
-          returns="4 USDT"
+          investment="20 USDT"
+          returns="0.8 USDT"
           src={mining3}
           imgSize={150}
           package1="explorer"
-          bonus="4 USDT"
+          bonus="0.8 USDT"
         />
 
         <Miningpackages
           title=" Xenon Supercharge "
-          investment="1000 USDT"
-          returns="40 USDT"
+          investment="50 USDT"
+          returns="2 USDT"
           src={mining2b}
           imgSize={270}
           package1="starter"
-          bonus="40 USDT"
+          bonus="2 USDT"
         />
 
         <Miningpackages
           title=" Nebula Odyssey "
-          investment="2000 USDT"
-          returns="80 USDT"
+          investment="100 USDT"
+          returns="4 USDT"
           src={mining2a}
           imgSize={230}
           package1="bronze"
-          bonus="80 USDT"
+          bonus="4 USDT"
         />
 
         <Miningpackages
           title="Quantum Hash"
-          investment="5000 USDT"
-          returns="200 USDT"
+          investment="200 USDT"
+          returns="8 USDT"
           src={mining2c}
           imgSize={290}
           package1="silver"
-          bonus="200 USDT"
+          bonus="8 USDT"
         />
         <Miningpackages
           title="Cyber Mine X"
-          investment="8000 USDT"
-          returns="320 USDT"
+          investment="500 USDT"
+          returns="20 USDT"
           src={mining1}
           imgSize={220}
           package1="gold"
-          bonus="320 USDT"
+          bonus="20 USDT"
         />
         <Miningpackages
           title="Stellar Hash"
-          investment="10000 USDT"
-          returns="400 USDT"
+          investment="1000 USDT"
+          returns="40 USDT"
           src={mining2}
           imgSize={290}
           package1="platinum"
-          bonus="400 USDT"
+          bonus="40 USDT"
         />
       </div>
     </section>

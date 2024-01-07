@@ -1,12 +1,15 @@
 import Mining from "./login_mining.png";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import { SiMinutemailer } from "react-icons/si";
+
 // import jwt from "jsonwebtoken";
 
 function Login() {
+  const [showChatButton, setShowChatButton] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -56,6 +59,21 @@ function Login() {
       console.error("Error logging in:", error.message);
     }
   };
+
+useEffect(() => {
+  // Directly set the showChatButton state to true
+  setShowChatButton(true);
+
+  // No need for a scroll event listener in this case
+  return () => {
+    // If you had a scroll event listener, you would remove it here
+  };
+}, []);
+
+   const handleChatButtonClick = () => {
+     window.location.href =
+       "mailto:hashminers@proton.me?subject=Inquiry&body=Drop%20us%20a%20message";
+   };
 
   return (
     <section className="h-screen p-5">
@@ -125,6 +143,14 @@ function Login() {
                   {apiResponse && (
                     <div className="mb-4 text-green-500">
                       API Response: {JSON.stringify(apiResponse)}
+                    </div>
+                  )}
+                  {showChatButton && (
+                    <div
+                      className="flex items-center gap-x-3 fixed bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded cursor-pointer"
+                      onClick={handleChatButtonClick}
+                    >
+                      <SiMinutemailer /> <p>Trouble Loggin In? Get Help</p>
                     </div>
                   )}
                 </p>
