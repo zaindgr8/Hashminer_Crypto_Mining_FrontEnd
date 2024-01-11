@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ScrollReveal from "scrollreveal";
 import { useEffect } from "react";
 import {CheckCircle} from "lucide-react"
@@ -7,11 +7,21 @@ import reg2 from "../assets/reg2.svg";
 import sec from "../assets/sec.svg";
 import daily from "../assets/daily.svg";
 import bonus from "../assets/bonus.svg";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
 function ThirdSection() {
+    const [token, setToken] = useState("");
+    const navigate=useNavigate()
+
+
+    useEffect(() => {
+      const storedToken = localStorage.getItem("apiToken");
+      if (storedToken) {
+        setToken(storedToken);
+      }
+    }, []);
 
 useEffect(() => {
   const sr = ScrollReveal();
@@ -40,6 +50,16 @@ useEffect(() => {
   });
 }, []);
 
+const handleStartMiningClick = () => {
+  if (token) {
+    console.log("token found");
+    navigate("/form");
+  } else {
+    navigate("/login");
+    console.log("token not found")
+  }
+}
+
 
 
   return (
@@ -60,9 +80,12 @@ useEffect(() => {
             Get started with our cloud mining service in just one minute. Our
             user-friendly sign-up procedure ensures you're mining in no time.
           </p>
-          <Link to="/register" className="invest-smart-article__content__btn">
+          <button
+            onClick={handleStartMiningClick}
+            className="invest-smart-article__content__btn"
+          >
             Start Mining
-          </Link>
+          </button>
         </div>
 
         <img
@@ -85,9 +108,12 @@ useEffect(() => {
             Explore and select from a range of plans to find the one that
             perfectly matches your mining goals and preferences.
           </p>
-        <Link to="/register"  className="detailed-stats-article__content__btn">
+          <button
+            onClick={handleStartMiningClick}
+            className="detailed-stats-article__content__btn"
+          >
             Start Mining
-          </Link>
+          </button>
         </div>
 
         <img
@@ -108,9 +134,12 @@ useEffect(() => {
             Deposit funds securely and complete your chosen package payment with
             ease. We prioritize the safety and convenience of your transactions.
           </p>
-         <Link to="/register" className="grow-profit-article__content__btn">
+          <button
+            onClick={handleStartMiningClick}
+            className="grow-profit-article__content__btn"
+          >
             Start Mining
-          </Link>
+          </button>
         </div>
 
         <img
@@ -131,9 +160,12 @@ useEffect(() => {
             Receive your earnings every day, providing you with a steady and
             reliable stream of income from your cloud mining endeavors.
           </p>
-         <Link to="/register"  className="detailed-stats-article__content__btn">
+          <button
+            onClick={handleStartMiningClick}
+            className="detailed-stats-article__content__btn"
+          >
             Start Mining
-          </Link>
+          </button>
         </div>
 
         <img
@@ -156,9 +188,12 @@ useEffect(() => {
             and enjoy an instant bonus of $20 for every successful 1st referral.
             Share the wealth and maximize your profits.
           </p>
-          <Link to="/register" className="grow-profit-article__content__btn">
+          <button
+            className="grow-profit-article__content__btn"
+            onClick={handleStartMiningClick}
+          >
             Start Mining
-          </Link>
+          </button>
         </div>
 
         <img
@@ -167,7 +202,6 @@ useEffect(() => {
           className="grow-profit-article__graphic headline5b"
         />
       </article>
-   
     </section>
   );
 }

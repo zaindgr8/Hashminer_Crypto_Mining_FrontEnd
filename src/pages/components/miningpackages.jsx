@@ -1,9 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import mining3 from "../../assets/mining6.png";
 import { CheckCircle2 } from "lucide-react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 
 const Miningpackages = ({title,bonus, investment, returns, src, imgSize, package1}) => {
+    const [token, setToken] = useState("");
+     const navigate = useNavigate();
+
+
+const handleStartMiningClick = () => {
+  if (token) {
+    console.log("token found");
+    navigate("/form");
+  } else {
+    navigate("/login");
+    console.log("token not found");
+  }
+};
+
+     useEffect(() => {
+       const storedToken = localStorage.getItem("apiToken");
+       if (storedToken) {
+         setToken(storedToken);
+       }
+     }, []);
   return (
     <div className="info-card">
       <img src={src} width={imgSize} alt="" className="info-card__icon" />
@@ -50,9 +70,10 @@ const Miningpackages = ({title,bonus, investment, returns, src, imgSize, package
           </p>
           <p className="px-5 lg:text-xl md:text-md sm:text-sm">{bonus}</p>
         </div>
-        <Link to="/register" className="info-card__btn">
+        <button onClick={handleStartMiningClick}
+         className="info-card__btn">
           Start mining <i className="fas fa-angle-right"></i>
-        </Link>
+        </button>
       </div>
     </div>
   );

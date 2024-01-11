@@ -7,8 +7,18 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { BsPeopleFill } from "react-icons/bs";
 import { FaTicket } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
+import { RiHome4Fill } from "react-icons/ri";
 
 function Sidebar() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Remove the token from local storage
+    localStorage.removeItem("apiToken");
+    // Redirect to the login page or any other desired page
+    navigate("/login");
+  };
   return (
     <div className="sidebar text-gray-800 border-r-2 ml-2 hidden md:block">
       <div className="font-bold text-md md:text-xl lg:text-2xl ml-4 mt-4 text-blue-500">
@@ -55,14 +65,25 @@ function Sidebar() {
           </Link>
 
           <p className="uppercase text-gray-500 my-2 text-lg md:text-2xl">
-            Settings
+            Home
           </p>
 
           <Link to="/" className="flex items-center">
-            <li>
-              <LogoutIcon className="mr-3 text-blue-500" /> Go to Home Page
+            <li className="flex items-center">
+              <RiHome4Fill className="mr-3 text-blue-500" />
+              Home Page
             </li>
           </Link>
+          <p className="uppercase text-gray-500 my-2 text-lg md:text-2xl">
+            LogOut
+          </p>
+          <button onClick={handleLogout}
+           className="flex items-center">
+            <li className="flex items-center">
+              <LogoutIcon className="mr-3 text-blue-500" />
+              Logout
+            </li>
+          </button>
         </ul>
       </div>
     </div>
