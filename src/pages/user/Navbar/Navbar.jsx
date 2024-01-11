@@ -5,7 +5,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import PersonIcon from "@mui/icons-material/Person";
 import React, {useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import { ColorContext } from '../../ColorContext/darkContext';
 import { UserButton } from "@clerk/clerk-react";
 import { useUser } from "@clerk/clerk-react";
@@ -17,9 +17,19 @@ import { MdEmail } from "react-icons/md";
 import { MdOutlineSecurity } from "react-icons/md";
 import { FaTicket } from "react-icons/fa6";
 
+
 function Navbar() {
+   const navigate = useNavigate();
   const { isSignedIn, user, isLoaded } = useUser();
   const [user1, setUser1] = useState(null);
+ 
+
+  const handleLogout = () => {
+    // Remove the token from local storage
+    localStorage.removeItem("apiToken");
+    // Redirect to the login page or any other desired page
+    navigate("/login");
+  };
     useEffect(() => {
       // Function to get the token from local storage
       const getAuthToken = () => {
@@ -78,7 +88,7 @@ function Navbar() {
           <GiRamProfile />
           Greetings and welcome
           <p className="text-green-700">{user1?.name}</p>
-          <span className="hidden md:block md:flex gap-x-3 items-center justify-center">
+          <span className="hidden md:flex gap-x-3 items-center justify-center">
             <MdOutlineSecurity />
             <p className="text-green-700 ">{user1?.user_id}</p>
             <MdEmail />
@@ -129,16 +139,24 @@ function Navbar() {
                       <CurrencyExchangeIcon className="icon" /> Manage Deposits
                     </li>
                   </Link>
+
                   <Link to="/withdraw" style={{ textDecoration: "none" }}>
                     <li>
                       <CreditCardIcon className="icon" /> Manage Withdrawals
                     </li>
                   </Link>
+                  <p className="spann">HOME</p>
                   <Link to="/">
                     <li>
                       <LogoutIcon className="icon" /> Go to Home
                     </li>
                   </Link>
+                  <p className="spann">LOGOUT</p>
+                  <button onClick={handleLogout}>
+                    <li>
+                      <LogoutIcon className="icon" /> LogOut
+                    </li>
+                  </button>
                 </ul>
               </div>
             </div>
